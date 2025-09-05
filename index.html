@@ -1125,144 +1125,229 @@
 
     <div id="notification" class="notification">Item added to order!</div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const carousel = document.getElementById('carousel');
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
-            const indicatorsContainer = document.getElementById('indicators');
-            const productCards = Array.from(carousel.querySelectorAll('.product-card'));
-            const totalProducts = productCards.length;
-
-            const modal3d = document.getElementById('modal-3d');
-            const modal3dTitle = modal3d.querySelector('.modal-3d-title');
-            const modal3dImage = modal3d.querySelector('.modal-3d-image');
-            const closeModalBtn = document.getElementById('closeModalBtn');
-            const rotateLeftBtn = document.getElementById('rotateLeftBtn');
-            const rotateRightBtn = document.getElementById('rotateRightBtn');
-            const resetViewBtn = document.getElementById('resetViewBtn');
-
-            const notification = document.getElementById('notification');
-
-            let currentModalRotation = 0;
-            let currentRotation = 0;
-
-            function updateCarousel() {
-                productCards.forEach((card, index) => {
-                    card.style.display = 'none';
-                    card.classList.remove('prev', 'active', 'next');
-                });
-            
-                const middleIndex = Math.floor(totalProducts / 2);
-                let centerIndex = currentRotation % totalProducts;
-                if (centerIndex < 0) {
-                    centerIndex += totalProducts;
-                }
-            
-                const prevIndex = (centerIndex - 1 + totalProducts) % totalProducts;
-                const nextIndex = (centerIndex + 1) % totalProducts;
-
-                productCards[centerIndex].style.display = 'block';
-                productCards[centerIndex].classList.add('active');
-            
-                productCards[prevIndex].style.display = 'block';
-                productCards[prevIndex].classList.add('prev');
-            
-                productCards[nextIndex].style.display = 'block';
-                productCards[nextIndex].classList.add('next');
-            
-                // Update indicators
-                const indicators = indicatorsContainer.querySelectorAll('.indicator');
-                indicators.forEach(indicator => indicator.classList.remove('active'));
-                indicators[centerIndex].classList.add('active');
-            }
-            
-            prevBtn.addEventListener('click', () => {
-                currentRotation--;
-                updateCarousel();
-            });
-
-            nextBtn.addEventListener('click', () => {
-                currentRotation++;
-                updateCarousel();
-            });
-
-            // 3D view modal functionality
-            document.body.addEventListener('click', (e) => {
-                if (e.target.classList.contains('view-3d-btn')) {
-                    const productName = e.target.dataset.product;
-                    const productImage = e.target.dataset.image;
-                    modal3dTitle.textContent = productName;
-                    modal3dImage.src = productImage;
-                    modal3d.classList.add('active');
-                    currentModalRotation = 0;
-                    modal3dImage.style.transform = `rotateY(${currentModalRotation}deg)`;
-                }
-            });
-
-            closeModalBtn.addEventListener('click', () => {
-                modal3d.classList.remove('active');
-            });
-
-            rotateLeftBtn.addEventListener('click', () => {
-                currentModalRotation -= 45;
-                modal3dImage.style.transform = `rotateY(${currentModalRotation}deg)`;
-            });
-            
-            rotateRightBtn.addEventListener('click', () => {
-                currentModalRotation += 45;
-                modal3dImage.style.transform = `rotateY(${currentModalRotation}deg)`;
-            });
-            
-            resetViewBtn.addEventListener('click', () => {
-                currentModalRotation = 0;
-                modal3dImage.style.transform = `rotateY(${currentModalRotation}deg)`;
-            });
-            
-            // Close modal when clicking outside
-            modal3d.addEventListener('click', (e) => {
-                if (e.target === modal3d) {
-                    modal3d.classList.remove('active');
-                }
-            });
-
-            // "Add to Order" button functionality
-            document.querySelectorAll('.product-button').forEach(button => {
-                button.addEventListener('click', (e) => {
-                    e.stopPropagation(); // Prevents the 3D modal from opening
-                    notification.classList.add('show');
-                    setTimeout(() => {
-                        notification.classList.remove('show');
-                    }, 3000);
-                });
-            });
-
-            // Add keyboard navigation
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'ArrowLeft') {
-                    currentRotation--;
-                    updateCarousel();
-                } else if (e.key === 'ArrowRight') {
-                    currentRotation++;
-                    updateCarousel();
-                } else if (e.key === 'Escape' && modal3d.classList.contains('active')) {
-                    modal3d.classList.remove('active');
-                }
-            });
-        
-            // Initialize carousel
-            updateCarousel();
-
-            // Set up indicators to jump to a product
-            indicatorsContainer.addEventListener('click', (e) => {
-                if (e.target.classList.contains('indicator')) {
-                    const index = parseInt(e.target.dataset.index);
-                    const diff = index - (currentRotation % totalProducts);
-                    currentRotation += diff;
-                    updateCarousel();
-                }
+   <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Smooth scrolling for menu link
+        const menuLink = document.querySelector('.menu-link');
+        menuLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('section-c').scrollIntoView({
+                behavior: 'smooth'
             });
         });
-    </script>
+
+        // Carousel functionality with proper display on each arrow tap
+        const carousel = document.getElementById('carousel');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const indicators = document.querySelectorAll('.indicator');
+        const productCards = document.querySelectorAll('.product-card');
+
+        let currentIndex = 0;
+        const totalProducts = productCards.length;
+
+        // Function to update carousel visible cards and classes
+        function updateCarousel() {
+            // Loop through all cards
+            productCards.forEach((card, index) => {
+                card.style.display = 'none';
+                card.classList.remove('active', 'prev', 'next');
+            });
+
+            // Calculate previous and next indexes with wrap-around
+            const prevIndex = (currentIndex - 1 + totalProducts) % totalProducts;
+            const nextIndex = (currentIndex + 1) % totalProducts;
+
+            // Display current, previous, and next cards
+            productCards[prevIndex].style.display = 'block';
+            productCards[prevIndex].classList.add('prev');
+
+            productCards[currentIndex].style.display = 'block';
+            productCards[currentIndex].classList.add('active');
+
+            productCards[nextIndex].style.display = 'block';
+            productCards[nextIndex].classList.add('next');
+
+            // Update indicators highlighting
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentIndex);
+            });
+        }
+
+        // Event listeners for prev/next buttons
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + totalProducts) % totalProducts;
+            updateCarousel();
+        });
+
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % totalProducts;
+            updateCarousel();
+        });
+
+        // Indicator clicks to jump to a specific product
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                currentIndex = index;
+                updateCarousel();
+            });
+        });
+
+        // Touch events for mobile swiping (optional, improved)
+        let touchStartX = 0;
+        let touchEndX = 0;
+        let isDragging = false;
+
+        carousel.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+            isDragging = true;
+        }, { passive: true });
+
+        carousel.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            // Prevent default scrolling while dragging
+            e.preventDefault();
+        }, { passive: false });
+
+        carousel.addEventListener('touchend', (e) => {
+            if (!isDragging) return;
+            isDragging = false;
+
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, { passive: true });
+
+        function handleSwipe() {
+            const swipeThreshold = 50; // minimum swipe distance
+            const difference = touchStartX - touchEndX;
+            if (Math.abs(difference) > swipeThreshold) {
+                if (difference > 0) {
+                    currentIndex = (currentIndex + 1) % totalProducts;
+                } else {
+                    currentIndex = (currentIndex - 1 + totalProducts) % totalProducts;
+                }
+                updateCarousel();
+            }
+        }
+
+        // Mouse drag support for desktop (optional)
+        carousel.addEventListener('mousedown', (e) => {
+            touchStartX = e.screenX;
+            isDragging = true;
+            carousel.style.cursor = 'grabbing';
+        });
+
+        carousel.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+        });
+
+        carousel.addEventListener('mouseup', (e) => {
+            if (!isDragging) return;
+            isDragging = false;
+            carousel.style.cursor = 'pointer';
+            touchEndX = e.screenX;
+            handleSwipe();
+        });
+
+        carousel.addEventListener('mouseleave', () => {
+            isDragging = false;
+            carousel.style.cursor = 'pointer';
+        });
+
+        // Add to order notification for product buttons
+        document.querySelectorAll('.product-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const productName = this.closest('.product-card').getAttribute('data-product');
+
+                let notification = document.getElementById('notification');
+                if (!notification) {
+                    notification = document.createElement('div');
+                    notification.id = 'notification';
+                    notification.className = 'notification';
+                    notification.innerHTML = '<span id=\"notification-text\"></span>';
+                    document.body.appendChild(notification);
+                }
+
+                const notificationText = document.getElementById('notification-text');
+                notificationText.textContent = `${productName} added to your order!`;
+                notification.classList.add('show');
+
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 3000);
+            });
+        });
+
+        // 3D Viewer modal functionality
+        const modal3d = document.getElementById('modal-3d');
+        const modal3dClose = document.getElementById('modal-3d-close');
+        const modal3dTitle = document.getElementById('modal-3d-title');
+        const modal3dImage = document.getElementById('modal-3d-image');
+        const rotateLeftBtn = document.getElementById('rotate-left');
+        const rotateRightBtn = document.getElementById('rotate-right');
+        const resetViewBtn = document.getElementById('reset-view');
+
+        let currentRotation = 0;
+
+        document.querySelectorAll('.view-3d-btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const productName = this.getAttribute('data-product');
+                const imageUrl = this.getAttribute('data-image');
+
+                modal3dTitle.textContent = productName;
+                modal3dImage.src = imageUrl;
+                modal3d.classList.add('active');
+
+                currentRotation = 0;
+                modal3dImage.style.transform = `rotateY(${currentRotation}deg)`;
+            });
+        });
+
+        modal3dClose.addEventListener('click', () => {
+            modal3d.classList.remove('active');
+        });
+
+        rotateLeftBtn.addEventListener('click', () => {
+            currentRotation -= 45;
+            modal3dImage.style.transform = `rotateY(${currentRotation}deg)`;
+        });
+
+        rotateRightBtn.addEventListener('click', () => {
+            currentRotation += 45;
+            modal3dImage.style.transform = `rotateY(${currentRotation}deg)`;
+        });
+
+        resetViewBtn.addEventListener('click', () => {
+            currentRotation = 0;
+            modal3dImage.style.transform = `rotateY(${currentRotation}deg)`;
+        });
+
+        modal3d.addEventListener('click', (e) => {
+            if (e.target === modal3d) {
+                modal3d.classList.remove('active');
+            }
+        });
+
+        // Keyboard events for carousel and modal
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                currentIndex = (currentIndex - 1 + totalProducts) % totalProducts;
+                updateCarousel();
+            } else if (e.key === 'ArrowRight') {
+                currentIndex = (currentIndex + 1) % totalProducts;
+                updateCarousel();
+            } else if (e.key === 'Escape' && modal3d.classList.contains('active')) {
+                modal3d.classList.remove('active');
+            }
+        });
+
+        // Initialize the carousel display on load
+        updateCarousel();
+    });
+</script>
+
 </body>
 </html>
