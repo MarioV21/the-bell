@@ -298,17 +298,15 @@
             height: 400px;
             perspective: 800px;
             margin-bottom: 30px;
-            overflow: hidden;
+            overflow: visible;
         }
 
         .carousel {
-            position: absolute;
+            position: relative;
             width: 100%;
             height: 100%;
             transform-style: preserve-3d;
             transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            left: 50%;
-            top: 50%;
         }
 
         .product-card {
@@ -327,6 +325,50 @@
             transform-origin: center;
             cursor: pointer;
             backface-visibility: hidden;
+        }
+
+        .product-card:nth-child(1) {
+            transform: translateX(-280px) translateZ(-150px) rotateY(20deg);
+            opacity: 0.7;
+            z-index: 1;
+        }
+
+        .product-card:nth-child(2) {
+            transform: translateX(0) translateZ(0) rotateY(0deg);
+            opacity: 1;
+            z-index: 3;
+        }
+
+        .product-card:nth-child(3) {
+            transform: translateX(280px) translateZ(-150px) rotateY(-20deg);
+            opacity: 0.7;
+            z-index: 1;
+        }
+
+        .product-card.active {
+            transform: translateX(0) translateZ(0) rotateY(0deg);
+            opacity: 1;
+            z-index: 3;
+        }
+
+        .product-card.prev {
+            transform: translateX(-280px) translateZ(-150px) rotateY(20deg);
+            opacity: 0.7;
+            z-index: 1;
+        }
+
+        .product-card.next {
+            transform: translateX(280px) translateZ(-150px) rotateY(-20deg);
+            opacity: 0.7;
+            z-index: 1;
+        }
+
+        .product-image {
+            height: 200px;
+            width: 100%;
+            background-size: cover;
+            background-position: center;
+            position: relative;
         }
 
         /* 3D View Button - replacing badge */
@@ -351,14 +393,6 @@
             background: rgba(196, 30, 58, 1);
             transform: scale(1.05);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        .product-image {
-            height: 200px;
-            width: 100%;
-            background-size: cover;
-            background-position: center;
-            position: relative;
         }
 
         .product-info {
@@ -606,6 +640,22 @@
                 margin-top: -160px;
             }
 
+            .product-card:nth-child(1) {
+                transform: translateX(-200px) translateZ(-100px) rotateY(15deg);
+            }
+
+            .product-card:nth-child(3) {
+                transform: translateX(200px) translateZ(-100px) rotateY(-15deg);
+            }
+
+            .product-card.prev {
+                transform: translateX(-200px) translateZ(-100px) rotateY(15deg);
+            }
+
+            .product-card.next {
+                transform: translateX(200px) translateZ(-100px) rotateY(-15deg);
+            }
+
             .product-image {
                 height: 160px;
             }
@@ -690,6 +740,26 @@
                 margin-left: -130px;
                 margin-top: -175px;
             }
+
+            .product-card:nth-child(1) {
+                transform: translateX(-240px) translateZ(-120px) rotateY(18deg);
+            }
+
+            .product-card:nth-child(3) {
+                transform: translateX(240px) translateZ(-120px) rotateY(-18deg);
+            }
+
+            .product-card.prev {
+                transform: translateX(-240px) translateZ(-120px) rotateY(18deg);
+            }
+
+            .product-card.next {
+                transform: translateX(240px) translateZ(-120px) rotateY(-18deg);
+            }
+
+            .product-image {
+                height: 180px;
+            }
         }
     
         /* === Mobile compatibility hardening (non-breaking additions) === */
@@ -741,7 +811,7 @@
             
             <div class="carousel-container">
                 <div class="carousel" id="carousel">
-                    <div class="product-card" data-product="Premium Sushi Platter">
+                    <div class="product-card active" data-product="Premium Sushi Platter">
                         <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');">
                             <button class="view-3d-btn" data-product="Premium Sushi Platter" data-image="https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">See it in 3D</button>
                         </div>
@@ -752,8 +822,8 @@
                             <button class="product-button">Add to Order</button>
                         </div>
                     </div>
-                    
-                    <div class="product-card" data-product="Dragon Roll">
+                
+                    <div class="product-card next" data-product="Dragon Roll">
                         <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');">
                             <button class="view-3d-btn" data-product="Dragon Roll" data-image="https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">See it in 3D</button>
                         </div>
@@ -765,7 +835,7 @@
                         </div>
                     </div>
                     
-                    <div class="product-card" data-product="Tuna Tataki">
+                    <div class="product-card prev" data-product="Tuna Tataki">
                         <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');">
                             <button class="view-3d-btn" data-product="Tuna Tataki" data-image="https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">See it in 3D</button>
                         </div>
@@ -776,8 +846,8 @@
                             <button class="product-button">Add to Order</button>
                         </div>
                     </div>
-                    
-                    <div class="product-card" data-product="Rainbow Roll">
+            
+                    <div class="product-card" data-product="Rainbow Roll" style="display: none;">
                         <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');">
                             <button class="view-3d-btn" data-product="Rainbow Roll" data-image="https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">See it in 3D</button>
                         </div>
@@ -788,8 +858,8 @@
                             <button class="product-button">Add to Order</button>
                         </div>
                     </div>
-                    
-                    <div class="product-card" data-product="Salmon Nigiri">
+
+                    <div class="product-card" data-product="Salmon Nigiri" style="display: none;">
                         <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');">
                             <button class="view-3d-btn" data-product="Salmon Nigiri" data-image="https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">See it in 3D</button>
                         </div>
@@ -800,8 +870,8 @@
                             <button class="product-button">Add to Order</button>
                         </div>
                     </div>
-                    
-                    <div class="product-card" data-product="Tempura Uramaki">
+
+                    <div class="product-card" data-product="Tempura Uramaki" style="display: none;">
                         <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');">
                             <button class="view-3d-btn" data-product="Tempura Uramaki" data-image="https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">See it in 3D</button>
                         </div>
@@ -819,6 +889,7 @@
                 <button class="carousel-btn" id="prevBtn">❮</button>
                 <button class="carousel-btn" id="nextBtn">❯</button>
             </div>
+            
             <div class="carousel-indicators" id="indicators">
                 <div class="indicator active" data-index="0"></div>
                 <div class="indicator" data-index="1"></div>
@@ -1011,243 +1082,128 @@
                     </li>
                     <li class="menu-item">
                         <div class="menu-item-header">
-                            <span class="menu-item-name">Tartar Salmoni</span>
-                            <span class="menu-item-price">900</span>
+                            <span class="menu-item-name">Spring Roll</span>
+                            <span class="menu-item-price">300</span>
                         </div>
-                        <p class="menu-item-description">Salmon tartar with fresh vegetables.</p>
-                        <p class="menu-item-ingredients">salsa shefit, avokado, kastravec, salmon, caviar, susam, unagi</p>
+                        <p class="menu-item-description">Crispy vegetable spring rolls with sweet chili sauce.</p>
                     </li>
                     <li class="menu-item">
                         <div class="menu-item-header">
-                            <span class="menu-item-name">Tartar Toni</span>
-                            <span class="menu-item-price">850</span>
-                        </div>
-                        <p class="menu-item-description">Tuna tartar with fresh vegetables.</p>
-                        <p class="menu-item-ingredients">salsa shefit, avokado, kastravec, ton, caviar, susam, unagi</p>
-                    </li>
-                    <li class="menu-item">
-                        <div class="menu-item-header">
-                            <span class="menu-item-name">Salmon Poke</span>
-                            <span class="menu-item-price">1200</span>
-                        </div>
-                        <p class="menu-item-description">Hawaiian style salmon poke bowl.</p>
-                        <p class="menu-item-ingredients">oriz, salmon, caviar, wakame, kastravec, avokado, crab, susam, unagi</p>
-                    </li>
-                    <li class="menu-item">
-                        <div class="menu-item-header">
-                            <span class="menu-item-name">Ton Poke</span>
-                            <span class="menu-item-price">1100</span>
-                        </div>
-                        <p class="menu-item-description">Hawaiian style tuna poke bowl.</p>
-                        <p class="menu-item-ingredients">oriz, ton, caviar, wakame, kastravec, avokado, crab, susam, unagi</p>
-                    </li>
-                    <li class="menu-item">
-                        <div class="menu-item-header">
-                            <span class="menu-item-name">Spicy Ton</span>
-                            <span class="menu-item-price">150</span>
-                        </div>
-                        <p class="menu-item-description">Tuna slices with spicy sauce.</p>
-                        <p class="menu-item-ingredients">ton, salsa shefit, pikante</p>
-                    </li>
-                    <li class="menu-item">
-                        <div class="menu-item-header">
-                            <span class="menu-item-name">Shrimp Tempura</span>
-                            <span class="menu-item-price">600</span>
-                        </div>
-                        <p class="menu-item-description">Shrimp tempura with special sauce.</p>
-                        <p class="menu-item-ingredients">shoqeruar me spicy mayo</p>
-                    </li>
-                </ul>
-            </div>
-            <div class="menu-category">
-                <h3 class="category-title">MAKI</h3>
-                <ul class="menu-items-list">
-                    <li class="menu-item">
-                        <div class="menu-item-header">
-                            <span class="menu-item-name">California</span>
+                            <span class="menu-item-name">Përime në Tempura</span>
                             <span class="menu-item-price">400</span>
                         </div>
-                        <p class="menu-item-description">Crab, avocado, and cucumber rolled in rice and sesame seeds.</p>
+                        <p class="menu-item-description">Assorted vegetable tempura with dipping sauce.</p>
                     </li>
                     <li class="menu-item">
                         <div class="menu-item-header">
-                            <span class="menu-item-name">Dragon Roll</span>
-                            <span class="menu-item-price">500</span>
+                            <span class="menu-item-name">Misosupe</span>
+                            <span class="menu-item-price">300</span>
                         </div>
-                        <p class="menu-item-description">Eel and cucumber topped with avocado and unagi sauce.</p>
-                    </li>
-                    <li class="menu-item">
-                        <div class="menu-item-header">
-                            <span class="menu-item-name">Spicy Tuna</span>
-                            <span class="menu-item-price">450</span>
-                        </div>
-                        <p class="menu-item-description">Spicy tuna and cucumber roll.</p>
-                    </li>
-                    <li class="menu-item">
-                        <div class="menu-item-header">
-                            <span class="menu-item-name">Philadelphia</span>
-                            <span class="menu-item-price">400</span>
-                        </div>
-                        <p class="menu-item-description">Smoked salmon, cream cheese, and avocado roll.</p>
-                    </li>
-                    <li class="menu-item">
-                        <div class="menu-item-header">
-                            <span class="menu-item-name">Tempura Roll</span>
-                            <span class="menu-item-price">500</span>
-                        </div>
-                        <p class="menu-item-description">Shrimp tempura, avocado, and unagi sauce.</p>
-                    </li>
-                    <li class="menu-item">
-                        <div class="menu-item-header">
-                            <span class="menu-item-name">Spicy Salmon</span>
-                            <span class="menu-item-price">450</span>
-                        </div>
-                        <p class="menu-item-description">Spicy salmon and cucumber roll.</p>
-                    </li>
-                </ul>
-            </div>
-            <div class="menu-category">
-                <h3 class="category-title">SPECIALE</h3>
-                <ul class="menu-items-list">
-                    <li class="menu-item">
-                        <div class="menu-item-header">
-                            <span class="menu-item-name">The Bell Special</span>
-                            <span class="menu-item-price">1000</span>
-                        </div>
-                        <p class="menu-item-description">Our most special sushi roll with unique ingredients and our chef's signature style.</p>
-                    </li>
-                    <li class="menu-item">
-                        <div class="menu-item-header">
-                            <span class="menu-item-name">Salsa The Bell</span>
-                            <span class="menu-item-price">100</span>
-                        </div>
-                        <p class="menu-item-description">Our signature sauce, perfect for dipping.</p>
-                    </li>
-                    <li class="menu-item">
-                        <div class="menu-item-header">
-                            <span class="menu-item-name">Salsa Shefit</span>
-                            <span class="menu-item-price">120</span>
-                        </div>
-                        <p class="menu-item-description">Chef's special sauce for a unique taste.</p>
+                        <p class="menu-item-description">Traditional miso soup with tofu and seaweed.</p>
                     </li>
                 </ul>
             </div>
         </div>
     </section>
 
-    <div class="modal-3d" id="modal-3d">
-        <button class="modal-3d-close" id="modal-3d-close">✖</button>
-        <h3 class="modal-3d-title" id="modal-3d-title"></h3>
+    <footer style="padding: 40px 20px; background-color: #0a0a0a; text-align: center; color: #aaa;">
+        <p>&copy; 2024 The Bell Sushi. All Rights Reserved.</p>
+    </footer>
+
+    <div id="modal-3d" class="modal-3d">
         <div class="modal-3d-content">
-            <img class="modal-3d-image" id="modal-3d-image" src="" alt="3D Product View">
+            <h2 class="modal-3d-title"></h2>
+            <img class="modal-3d-image">
+            <div class="modal-3d-controls">
+                <button id="rotateLeftBtn" class="modal-3d-btn">Rotate Left</button>
+                <button id="rotateRightBtn" class="modal-3d-btn">Rotate Right</button>
+                <button id="resetViewBtn" class="modal-3d-btn">Reset View</button>
+            </div>
         </div>
-        <div class="modal-3d-controls">
-            <button class="modal-3d-btn" id="rotateLeftBtn">Rotate Left</button>
-            <button class="modal-3d-btn" id="resetViewBtn">Reset View</button>
-            <button class="modal-3d-btn" id="rotateRightBtn">Rotate Right</button>
-        </div>
+        <button id="closeModalBtn" class="modal-3d-close">&times;</button>
     </div>
-    
+
+    <div id="notification" class="notification">Item added to order!</div>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const carousel = document.getElementById('carousel');
-            const productCards = document.querySelectorAll('.product-card');
             const prevBtn = document.getElementById('prevBtn');
             const nextBtn = document.getElementById('nextBtn');
             const indicatorsContainer = document.getElementById('indicators');
+            const productCards = Array.from(carousel.querySelectorAll('.product-card'));
+            const totalProducts = productCards.length;
 
             const modal3d = document.getElementById('modal-3d');
-            const modal3dClose = document.getElementById('modal-3d-close');
-            const modal3dImage = document.getElementById('modal-3d-image');
-            const modal3dTitle = document.getElementById('modal-3d-title');
+            const modal3dTitle = modal3d.querySelector('.modal-3d-title');
+            const modal3dImage = modal3d.querySelector('.modal-3d-image');
+            const closeModalBtn = document.getElementById('closeModalBtn');
             const rotateLeftBtn = document.getElementById('rotateLeftBtn');
             const rotateRightBtn = document.getElementById('rotateRightBtn');
             const resetViewBtn = document.getElementById('resetViewBtn');
 
-            let currentRotation = 0;
-            const totalProducts = productCards.length;
-            const angleIncrement = 360 / totalProducts;
-            const zDistance = 350; // Adjust this value to control the 3D effect depth
+            const notification = document.getElementById('notification');
 
-            function updateCarousel(direction = 0) {
-                currentRotation -= direction * angleIncrement;
-                carousel.style.transform = `translate(-50%, -50%) rotateY(${currentRotation}deg)`;
-            
+            let currentModalRotation = 0;
+            let currentRotation = 0;
+
+            function updateCarousel() {
                 productCards.forEach((card, index) => {
-                    const angle = index * angleIncrement;
-                    const cardTransform = `rotateY(${angle}deg) translateZ(${zDistance}px)`;
-                    card.style.transform = cardTransform;
+                    card.style.display = 'none';
+                    card.classList.remove('prev', 'active', 'next');
                 });
             
-                updateIndicators();
-            }
-
-            function updateIndicators() {
-                const indicators = document.querySelectorAll('.indicator');
-                indicators.forEach(indicator => indicator.classList.remove('active'));
+                const middleIndex = Math.floor(totalProducts / 2);
+                let centerIndex = currentRotation % totalProducts;
+                if (centerIndex < 0) {
+                    centerIndex += totalProducts;
+                }
             
-                // Calculate the index of the currently active product
-                let activeIndex = Math.round(-currentRotation / angleIncrement);
-                activeIndex = (activeIndex % totalProducts + totalProducts) % totalProducts;
+                const prevIndex = (centerIndex - 1 + totalProducts) % totalProducts;
+                const nextIndex = (centerIndex + 1) % totalProducts;
 
-                indicators[activeIndex].classList.add('active');
+                productCards[centerIndex].style.display = 'block';
+                productCards[centerIndex].classList.add('active');
+            
+                productCards[prevIndex].style.display = 'block';
+                productCards[prevIndex].classList.add('prev');
+            
+                productCards[nextIndex].style.display = 'block';
+                productCards[nextIndex].classList.add('next');
+            
+                // Update indicators
+                const indicators = indicatorsContainer.querySelectorAll('.indicator');
+                indicators.forEach(indicator => indicator.classList.remove('active'));
+                indicators[centerIndex].classList.add('active');
             }
-
+            
             prevBtn.addEventListener('click', () => {
-                updateCarousel(-1); // Rotate to the left
+                currentRotation--;
+                updateCarousel();
             });
 
             nextBtn.addEventListener('click', () => {
-                updateCarousel(1); // Rotate to the right
+                currentRotation++;
+                updateCarousel();
             });
 
-            // Handle indicator clicks
-            indicatorsContainer.addEventListener('click', (e) => {
-                if (e.target.classList.contains('indicator')) {
-                    const index = parseInt(e.target.dataset.index);
-                    const currentActiveIndex = (Math.round(-currentRotation / angleIncrement) % totalProducts + totalProducts) % totalProducts;
-                    const diff = index - currentActiveIndex;
-                    updateCarousel(diff);
+            // 3D view modal functionality
+            document.body.addEventListener('click', (e) => {
+                if (e.target.classList.contains('view-3d-btn')) {
+                    const productName = e.target.dataset.product;
+                    const productImage = e.target.dataset.image;
+                    modal3dTitle.textContent = productName;
+                    modal3dImage.src = productImage;
+                    modal3d.classList.add('active');
+                    currentModalRotation = 0;
+                    modal3dImage.style.transform = `rotateY(${currentModalRotation}deg)`;
                 }
             });
 
-            // 3D Modal functionality
-            productCards.forEach(card => {
-                card.addEventListener('click', (e) => {
-                    if (e.target.tagName !== 'BUTTON') {
-                        const productTitle = card.getAttribute('data-product');
-                        const productImage = card.querySelector('.product-image').style.backgroundImage.slice(5, -2);
-                        modal3dTitle.textContent = productTitle;
-                        modal3dImage.src = productImage;
-                        modal3d.classList.add('active');
-                        // Reset 3D image rotation
-                        modal3dImage.style.transform = 'rotateY(0deg)';
-                        currentRotation = 0;
-                    }
-                });
-            });
-
-            const view3dButtons = document.querySelectorAll('.view-3d-btn');
-            view3dButtons.forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    const productTitle = btn.getAttribute('data-product');
-                    const productImage = btn.getAttribute('data-image');
-                    modal3dTitle.textContent = productTitle;
-                    modal3dImage.src = productImage;
-                    modal3d.classList.add('active');
-                    // Reset 3D image rotation
-                    modal3dImage.style.transform = 'rotateY(0deg)';
-                    currentRotation = 0;
-                });
-            });
-
-            modal3dClose.addEventListener('click', () => {
+            closeModalBtn.addEventListener('click', () => {
                 modal3d.classList.remove('active');
             });
 
-            // 3D image rotation logic
-            let currentModalRotation = 0;
             rotateLeftBtn.addEventListener('click', () => {
                 currentModalRotation -= 45;
                 modal3dImage.style.transform = `rotateY(${currentModalRotation}deg)`;
@@ -1269,23 +1225,41 @@
                     modal3d.classList.remove('active');
                 }
             });
-            
-            // Initialize carousel
-            updateCarousel();
-            
+
+            // "Add to Order" button functionality
+            document.querySelectorAll('.product-button').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.stopPropagation(); // Prevents the 3D modal from opening
+                    notification.classList.add('show');
+                    setTimeout(() => {
+                        notification.classList.remove('show');
+                    }, 3000);
+                });
+            });
+
             // Add keyboard navigation
             document.addEventListener('keydown', (e) => {
-                if (modal3d.classList.contains('active')) {
-                    if (e.key === 'Escape') {
-                        modal3d.classList.remove('active');
-                    }
-                    return;
-                }
-                
                 if (e.key === 'ArrowLeft') {
-                    updateCarousel(-1);
+                    currentRotation--;
+                    updateCarousel();
                 } else if (e.key === 'ArrowRight') {
-                    updateCarousel(1);
+                    currentRotation++;
+                    updateCarousel();
+                } else if (e.key === 'Escape' && modal3d.classList.contains('active')) {
+                    modal3d.classList.remove('active');
+                }
+            });
+        
+            // Initialize carousel
+            updateCarousel();
+
+            // Set up indicators to jump to a product
+            indicatorsContainer.addEventListener('click', (e) => {
+                if (e.target.classList.contains('indicator')) {
+                    const index = parseInt(e.target.dataset.index);
+                    const diff = index - (currentRotation % totalProducts);
+                    currentRotation += diff;
+                    updateCarousel();
                 }
             });
         });
