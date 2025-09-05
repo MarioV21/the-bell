@@ -1205,7 +1205,8 @@
             indicatorsContainer.addEventListener('click', (e) => {
                 if (e.target.classList.contains('indicator')) {
                     const index = parseInt(e.target.dataset.index);
-                    const diff = index - ((Math.round(-currentRotation / angleIncrement) % totalProducts + totalProducts) % totalProducts);
+                    const currentActiveIndex = (Math.round(-currentRotation / angleIncrement) % totalProducts + totalProducts) % totalProducts;
+                    const diff = index - currentActiveIndex;
                     updateCarousel(diff);
                 }
             });
@@ -1246,19 +1247,20 @@
             });
 
             // 3D image rotation logic
+            let currentModalRotation = 0;
             rotateLeftBtn.addEventListener('click', () => {
-                currentRotation -= 45;
-                modal3dImage.style.transform = `rotateY(${currentRotation}deg)`;
+                currentModalRotation -= 45;
+                modal3dImage.style.transform = `rotateY(${currentModalRotation}deg)`;
             });
             
             rotateRightBtn.addEventListener('click', () => {
-                currentRotation += 45;
-                modal3dImage.style.transform = `rotateY(${currentRotation}deg)`;
+                currentModalRotation += 45;
+                modal3dImage.style.transform = `rotateY(${currentModalRotation}deg)`;
             });
             
             resetViewBtn.addEventListener('click', () => {
-                currentRotation = 0;
-                modal3dImage.style.transform = `rotateY(${currentRotation}deg)`;
+                currentModalRotation = 0;
+                modal3dImage.style.transform = `rotateY(${currentModalRotation}deg)`;
             });
             
             // Close modal when clicking outside
