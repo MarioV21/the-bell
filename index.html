@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Bell Sushi - Premium Japanese Cuisine</title>
     <style>
+        /* General styles and font import */
         * {
             margin: 0;
             padding: 0;
@@ -15,7 +16,9 @@
             background-color: #1F2C43;
             color: #FAF9F6;
             overflow-x: hidden;
+            line-height: 1.6;
         }
+
         /* Section A - Landing Page */
         .section-a {
             height: 100vh;
@@ -26,6 +29,7 @@
             background: linear-gradient(135deg, #1F2C43 0%, #2A3A5C 100%);
             position: relative;
             overflow: hidden;
+            text-align: center; /* Ensures text is centered on all devices */
         }
         .section-a::before {
             content: '';
@@ -73,12 +77,10 @@
         .sushi-quote {
             position: relative;
             z-index: 1;
-            font-size: 1.8rem;
+            font-size: clamp(1.4rem, 4vw, 1.8rem); /* Fluid font size */
             font-style: italic;
-            text-align: center;
             max-width: 800px;
-            margin-bottom: 50px;
-            line-height: 1.6;
+            margin: 0 20px 50px;
             color: #FAF9F6;
         }
         .menu-link {
@@ -88,7 +90,7 @@
             background: linear-gradient(45deg, #FAF9F6, #E8E7E3);
             color: #1F2C43;
             text-decoration: none;
-            font-size: 1.3rem;
+            font-size: clamp(1.1rem, 3vw, 1.3rem); /* Fluid font size */
             font-weight: 600;
             border-radius: 50px;
             transition: all 0.3s ease;
@@ -100,6 +102,7 @@
             transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(250, 249, 246, 0.5);
         }
+
         /* Section B - 3D Carousel */
         .section-b {
             padding: 80px 20px;
@@ -112,15 +115,16 @@
             margin: 0 auto;
         }
         .section-b .menu-header h1 {
-            font-size: 2.5rem;
+            font-size: clamp(2rem, 5vw, 2.5rem); /* Fluid font size */
             margin-bottom: 15px;
             color: #FAF9F6;
         }
         .section-b .menu-header p {
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 2vw, 1.1rem); /* Fluid font size */
             color: #D1D0CC;
             margin-bottom: 40px;
         }
+
         /* Section C - Text-only Menu */
         .section-c {
             padding: 80px 20px;
@@ -132,7 +136,7 @@
             margin-bottom: 60px;
         }
         .section-c-header h2 {
-            font-size: 3rem;
+            font-size: clamp(2.2rem, 6vw, 3rem); /* Fluid font size */
             color: #FAF9F6;
             margin-bottom: 20px;
             position: relative;
@@ -149,22 +153,22 @@
             background: #FAF9F6;
         }
         .section-c-header p {
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 2.5vw, 1.2rem); /* Fluid font size */
             color: #D1D0CC;
             max-width: 700px;
             margin: 0 auto;
         }
+
         /* Text-only Menu Styles */
         .text-menu {
             max-width: 900px;
             margin: 0 auto;
-            line-height: 1.6;
         }
         .menu-category {
             margin-bottom: 50px;
         }
         .category-title {
-            font-size: 2.2rem;
+            font-size: clamp(1.8rem, 4vw, 2.2rem); /* Fluid font size */
             color: #FAF9F6;
             margin-bottom: 25px;
             padding-bottom: 10px;
@@ -191,28 +195,30 @@
             justify-content: space-between;
             align-items: baseline;
             margin-bottom: 5px;
+            flex-wrap: wrap; /* Allows items to wrap on smaller screens */
         }
         .menu-item-name {
-            font-size: 1.4rem;
+            font-size: clamp(1.2rem, 3vw, 1.4rem); /* Fluid font size */
             font-weight: 600;
             color: #FAF9F6;
         }
         .menu-item-price {
-            font-size: 1.2rem;
+            font-size: clamp(1.1rem, 2.5vw, 1.2rem); /* Fluid font size */
             color: #FAF9F6;
             font-weight: 700;
             white-space: nowrap;
         }
         .menu-item-description {
             color: #D1D0CC;
-            font-size: 1rem;
+            font-size: clamp(0.9rem, 2vw, 1rem); /* Fluid font size */
             margin-bottom: 8px;
         }
         .menu-item-ingredients {
             color: #A8A7A3;
-            font-size: 0.9rem;
+            font-size: clamp(0.8rem, 1.5vw, 0.9rem); /* Fluid font size */
             font-style: italic;
         }
+
         /* Scroll indicator */
         .scroll-indicator {
             position: absolute;
@@ -251,6 +257,7 @@
                 opacity: 0;
             }
         }
+
         /* Notification */
         .notification {
             position: fixed;
@@ -268,14 +275,15 @@
         .notification.show {
             transform: translateX(0);
         }
+
         /* Carousel styles - Improved for mobile */
         .carousel-container {
             position: relative;
             width: 100%;
             max-width: 900px;
             margin: 0 auto;
-            height: 400px;
-            perspective: 800px;
+            height: 400px; /* Base height for desktop */
+            perspective: 800px; /* Base perspective for desktop */
             margin-bottom: 30px;
             overflow: visible;
         }
@@ -288,12 +296,11 @@
         }
         .product-card {
             position: absolute;
-            width: 280px;
-            height: 380px;
+            width: 280px; /* Base width */
+            height: 380px; /* Base height */
             left: 50%;
             top: 50%;
-            margin-left: -140px;
-            margin-top: -190px;
+            transform: translate(-50%, -50%); /* Center the card */
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
@@ -304,32 +311,32 @@
             backface-visibility: hidden;
         }
         .product-card:nth-child(1) {
-            transform: translateX(-280px) translateZ(-150px) rotateY(20deg);
+            transform: translate(-50%, -50%) translateX(-280px) translateZ(-150px) rotateY(20deg);
             opacity: 0.7;
             z-index: 1;
         }
         .product-card:nth-child(2) {
-            transform: translateX(0) translateZ(0) rotateY(0deg);
+            transform: translate(-50%, -50%) translateX(0) translateZ(0) rotateY(0deg);
             opacity: 1;
             z-index: 3;
         }
         .product-card:nth-child(3) {
-            transform: translateX(280px) translateZ(-150px) rotateY(-20deg);
+            transform: translate(-50%, -50%) translateX(280px) translateZ(-150px) rotateY(-20deg);
             opacity: 0.7;
             z-index: 1;
         }
         .product-card.active {
-            transform: translateX(0) translateZ(0) rotateY(0deg);
+            transform: translate(-50%, -50%) translateX(0) translateZ(0) rotateY(0deg);
             opacity: 1;
             z-index: 3;
         }
         .product-card.prev {
-            transform: translateX(-280px) translateZ(-150px) rotateY(20deg);
+            transform: translate(-50%, -50%) translateX(-280px) translateZ(-150px) rotateY(20deg);
             opacity: 0.7;
             z-index: 1;
         }
         .product-card.next {
-            transform: translateX(280px) translateZ(-150px) rotateY(-20deg);
+            transform: translate(-50%, -50%) translateX(280px) translateZ(-150px) rotateY(-20deg);
             opacity: 0.7;
             z-index: 1;
         }
@@ -340,7 +347,7 @@
             background-position: center;
             position: relative;
         }
-        /* 3D View Button - replacing badge */
+        /* 3D View Button */
         .view-3d-btn {
             position: absolute;
             top: 15px;
@@ -368,14 +375,14 @@
             color: #1F2C43;
         }
         .product-title {
-            font-size: 1.3rem;
+            font-size: clamp(1.1rem, 2.5vw, 1.3rem); /* Fluid font size */
             font-weight: 700;
             color: #1F2C43;
             margin-bottom: 8px;
         }
         .product-description {
             color: #3A4D6B;
-            font-size: 0.85rem;
+            font-size: clamp(0.8rem, 1.5vw, 0.85rem); /* Fluid font size */
             margin-bottom: 15px;
             line-height: 1.4;
             height: 60px;
@@ -385,7 +392,7 @@
             -webkit-box-orient: vertical;
         }
         .product-price {
-            font-size: 1.5rem;
+            font-size: clamp(1.3rem, 3vw, 1.5rem); /* Fluid font size */
             font-weight: 700;
             color: #1F2C43;
             margin-bottom: 20px;
@@ -398,7 +405,7 @@
             padding: 12px;
             border-radius: 50px;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: clamp(0.85rem, 2vw, 0.9rem); /* Fluid font size */
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 5px 15px rgba(31, 44, 67, 0.3);
@@ -486,7 +493,7 @@
         }
         .modal-3d-title {
             color: #FAF9F6;
-            font-size: 1.8rem;
+            font-size: clamp(1.4rem, 3vw, 1.8rem); /* Fluid font size */
             margin-bottom: 20px;
             text-align: center;
         }
@@ -503,7 +510,7 @@
             border-radius: 30px;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-size: 1rem;
+            font-size: clamp(0.9rem, 2vw, 1rem); /* Fluid font size */
         }
         .modal-3d-btn:hover {
             background: rgba(250, 249, 246, 0.3);
@@ -528,152 +535,93 @@
         .modal-3d-close:hover {
             background: rgba(250, 249, 246, 0.3);
         }
-        /* Mobile-specific styles */
+
+        /* Responsive adjustments for various screen sizes */
+        @media (max-width: 768px) {
+            .logo {
+                width: 180px;
+                height: 180px;
+            }
+            .sushi-quote {
+                padding: 0 15px;
+            }
+            .product-card {
+                width: 250px;
+                height: 340px;
+            }
+            .product-image {
+                height: 170px;
+            }
+            /* Adjust carousel transforms for smaller viewports */
+            .product-card:nth-child(1) {
+                transform: translate(-50%, -50%) translateX(-250px) translateZ(-120px) rotateY(18deg);
+            }
+            .product-card:nth-child(3) {
+                transform: translate(-50%, -50%) translateX(250px) translateZ(-120px) rotateY(-18deg);
+            }
+            .product-card.prev {
+                transform: translate(-50%, -50%) translateX(-250px) translateZ(-120px) rotateY(18deg);
+            }
+            .product-card.next {
+                transform: translate(-50%, -50%) translateX(250px) translateZ(-120px) rotateY(-18deg);
+            }
+        }
+
         @media (max-width: 480px) {
             .logo {
                 width: 150px;
                 height: 150px;
             }
-            .sushi-quote {
-                font-size: 1.4rem;
-                padding: 0 20px;
+            .section-c-header {
+                margin-bottom: 40px;
             }
-            .menu-link {
-                padding: 12px 30px;
-                font-size: 1.1rem;
-            }
-            .section-c-header h2 {
-                font-size: 2.2rem;
-            }
-            .category-title {
-                font-size: 1.8rem;
-            }
-            .menu-item-name {
-                font-size: 1.2rem;
-            }
-            .menu-item-price {
-                font-size: 1.1rem;
-            }
-            .menu-item-description {
-                font-size: 0.9rem;
-            }
-            .menu-item-ingredients {
-                font-size: 0.8rem;
-            }
-            /* Improved mobile carousel styles */
             .carousel-container {
-                height: 350px;
+                height: 320px;
                 perspective: 600px;
-                max-width: 100%;
-                padding: 0 20px;
             }
             .product-card {
-                width: 240px;
-                height: 320px;
-                margin-left: -120px;
-                margin-top: -160px;
-            }
-            .product-card:nth-child(1) {
-                transform: translateX(-200px) translateZ(-100px) rotateY(15deg);
-            }
-            .product-card:nth-child(3) {
-                transform: translateX(200px) translateZ(-100px) rotateY(-15deg);
-            }
-            .product-card.prev {
-                transform: translateX(-200px) translateZ(-100px) rotateY(15deg);
-            }
-            .product-card.next {
-                transform: translateX(200px) translateZ(-100px) rotateY(-15deg);
+                width: 220px;
+                height: 300px;
             }
             .product-image {
-                height: 160px;
+                height: 150px;
+            }
+            /* Adjust carousel transforms for mobile viewports */
+            .product-card:nth-child(1) {
+                transform: translate(-50%, -50%) translateX(-180px) translateZ(-80px) rotateY(15deg);
+            }
+            .product-card:nth-child(3) {
+                transform: translate(-50%, -50%) translateX(180px) translateZ(-80px) rotateY(-15deg);
+            }
+            .product-card.prev {
+                transform: translate(-50%, -50%) translateX(-180px) translateZ(-80px) rotateY(15deg);
+            }
+            .product-card.next {
+                transform: translate(-50%, -50%) translateX(180px) translateZ(-80px) rotateY(-15deg);
             }
             .product-info {
                 padding: 15px;
             }
-            .product-title {
-                font-size: 1.1rem;
-            }
             .product-description {
-                font-size: 0.8rem;
-                height: 50px;
+                height: 45px;
+                -webkit-line-clamp: 2; /* Adjusting for smaller space */
             }
-            .product-price {
-                font-size: 1.3rem;
-                margin-bottom: 15px;
-            }
-            .product-button {
-                padding: 10px;
-                font-size: 0.85rem;
+            .carousel-controls {
+                gap: 10px;
             }
             .carousel-btn {
-                width: 45px;
-                height: 45px;
+                width: 40px;
+                height: 40px;
                 font-size: 1rem;
             }
             .indicator {
                 width: 8px;
                 height: 8px;
             }
-            /* Touch-friendly controls */
-            .carousel-controls {
-                margin-top: 30px;
-                gap: 20px;
-            }
-            .carousel-btn {
-                width: 60px;
-                height: 60px;
-                font-size: 1.4rem;
-            }
-            /* 3D Modal adjustments */
-            .modal-3d-content {
-                width: 90%;
-                height: 40%;
-            }
-            .modal-3d-title {
-                font-size: 1.4rem;
-            }
-            .modal-3d-btn {
-                padding: 8px 16px;
-                font-size: 0.9rem;
-            }
-        }
-        /* Tablet styles */
-        @media (min-width: 481px) and (max-width: 768px) {
-            .menu-header h1 {
-                font-size: 2rem;
-            }
-            .carousel-container {
-                height: 380px;
-                perspective: 700px;
-                max-width: 100%;
-            }
-            .product-card {
-                width: 260px;
-                height: 350px;
-                margin-left: -130px;
-                margin-top: -175px;
-            }
-            .product-card:nth-child(1) {
-                transform: translateX(-240px) translateZ(-120px) rotateY(18deg);
-            }
-            .product-card:nth-child(3) {
-                transform: translateX(240px) translateZ(-120px) rotateY(-18deg);
-            }
-            .product-card.prev {
-                transform: translateX(-240px) translateZ(-120px) rotateY(18deg);
-            }
-            .product-card.next {
-                transform: translateX(-240px) translateZ(-120px) rotateY(-18deg);
-            }
-            .product-image {
-                height: 180px;
-            }
         }
     </style>
 </head>
 <body>
-    <!-- Section A - Landing Page -->
     <section id="section-a" class="section-a">
         <div class="logo-container">
             <div class="logo">
@@ -684,7 +632,6 @@
         <a href="#section-c" class="menu-link">Explore Our Menu</a>
         <div class="scroll-indicator"></div>
     </section>
-    <!-- Section B - 3D Carousel -->
     <section id="section-b" class="section-b">
         <div class="menu-container">
             <div class="menu-header">
@@ -693,7 +640,6 @@
             </div>
             <div class="carousel-container">
                 <div class="carousel" id="carousel">
-                    <!-- Product 1 -->
                     <div class="product-card active" data-product="Premium Sushi Platter">
                         <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');">
                             <button class="view-3d-btn" data-product="Premium Sushi Platter" data-image="https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">See it in 3D</button>
@@ -705,7 +651,6 @@
                             <button class="product-button">Add to Order</button>
                         </div>
                     </div>
-                    <!-- Product 2 -->
                     <div class="product-card next" data-product="Dragon Roll">
                         <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');">
                             <button class="view-3d-btn" data-product="Dragon Roll" data-image="https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">See it in 3D</button>
@@ -717,7 +662,6 @@
                             <button class="product-button">Add to Order</button>
                         </div>
                     </div>
-                    <!-- Product 3 -->
                     <div class="product-card prev" data-product="Tuna Tataki">
                         <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');">
                             <button class="view-3d-btn" data-product="Tuna Tataki" data-image="https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">See it in 3D</button>
@@ -729,7 +673,6 @@
                             <button class="product-button">Add to Order</button>
                         </div>
                     </div>
-                    <!-- Product 4 -->
                     <div class="product-card" data-product="Rainbow Roll" style="display: none;">
                         <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');">
                             <button class="view-3d-btn" data-product="Rainbow Roll" data-image="https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">See it in 3D</button>
@@ -741,7 +684,6 @@
                             <button class="product-button">Add to Order</button>
                         </div>
                     </div>
-                    <!-- Product 5 -->
                     <div class="product-card" data-product="Salmon Nigiri" style="display: none;">
                         <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');">
                             <button class="view-3d-btn" data-product="Salmon Nigiri" data-image="https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">See it in 3D</button>
@@ -753,7 +695,6 @@
                             <button class="product-button">Add to Order</button>
                         </div>
                     </div>
-                    <!-- Product 6 -->
                     <div class="product-card" data-product="Tempura Uramaki" style="display: none;">
                         <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');">
                             <button class="view-3d-btn" data-product="Tempura Uramaki" data-image="https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">See it in 3D</button>
@@ -781,14 +722,12 @@
             </div>
         </div>
     </section>
-    <!-- Section C - Text-only Menu -->
     <section id="section-c" class="section-c">
         <div class="section-c-header">
             <h2>Our Exquisite Menu</h2>
             <p>Each dish is a masterpiece, crafted with precision and the finest ingredients</p>
         </div>
         <div class="text-menu">
-            <!-- SALLATË Category -->
             <div class="menu-category">
                 <h3 class="category-title">SALLATË</h3>
                 <ul class="menu-items-list">
@@ -836,7 +775,6 @@
                     </li>
                 </ul>
             </div>
-            <!-- NIGIRI Category -->
             <div class="menu-category">
                 <h3 class="category-title">NIGIRI</h3>
                 <ul class="menu-items-list">
@@ -877,7 +815,6 @@
                     </li>
                 </ul>
             </div>
-            <!-- SASHIMI Category -->
             <div class="menu-category">
                 <h3 class="category-title">SASHIMI</h3>
                 <ul class="menu-items-list">
@@ -912,7 +849,6 @@
                     </li>
                 </ul>
             </div>
-            <!-- SUPA Category -->
             <div class="menu-category">
                 <h3 class="category-title">SUPA</h3>
                 <ul class="menu-items-list">
@@ -939,7 +875,6 @@
                     </li>
                 </ul>
             </div>
-            <!-- TË PARA Category -->
             <div class="menu-category">
                 <h3 class="category-title">TË PARA</h3>
                 <ul class="menu-items-list">
@@ -1008,7 +943,6 @@
                     </li>
                 </ul>
             </div>
-            <!-- GUNKAN Category -->
             <div class="menu-category">
                 <h3 class="category-title">GUNKAN</h3>
                 <ul class="menu-items-list">
@@ -1029,626 +963,246 @@
                     <li class="menu-item">
                         <div class="menu-item-header">
                             <span class="menu-item-name">Karkalec</span>
-                            <span class="menu-item-price">300</span>
+                            <span class="menu-item-price">200</span>
                         </div>
                         <p class="menu-item-description">Crab gunkan with special toppings.</p>
                     </li>
-                    <li class="menu-item">
-                        <div class="menu-item-header">
-                            <span class="menu-item-name">Salmon Ikura</span>
-                            <span class="menu-item-price">450</span>
-                        </div>
-                        <p class="menu-item-description">Salmon with salmon roe gunkan.</p>
-                    </li>
                 </ul>
             </div>
-            <!-- HOSOMAKI Category -->
             <div class="menu-category">
-                <h3 class="category-title">HOSOMAKI</h3>
+                <h3 class="category-title">TEMPURA & ROLLS</h3>
                 <ul class="menu-items-list">
                     <li class="menu-item">
                         <div class="menu-item-header">
-                            <span class="menu-item-name">Salmon</span>
-                            <span class="menu-item-price">500</span>
+                            <span class="menu-item-name">Tiger Roll</span>
+                            <span class="menu-item-price">1200</span>
                         </div>
-                        <p class="menu-item-description">Thin roll with salmon filling.</p>
+                        <p class="menu-item-description">Spicy tuna roll with shrimp tempura and special sauce.</p>
+                        <p class="menu-item-ingredients">Ton spicy, Karkalec tempura, Crab, Salsa shefit, Caviar, Susam</p>
                     </li>
                     <li class="menu-item">
                         <div class="menu-item-header">
-                            <span class="menu-item-name">Ton</span>
-                            <span class="menu-item-price">700</span>
+                            <span class="menu-item-name">Spider Roll</span>
+                            <span class="menu-item-price">1200</span>
                         </div>
-                        <p class="menu-item-description">Thin roll with tuna filling.</p>
+                        <p class="menu-item-description">Soft shell crab tempura roll with cucumber and avocado.</p>
+                        <p class="menu-item-ingredients">crab, Kastravec, Avokado, Salsa shefit, Caviar, Unagi, Susam</p>
                     </li>
                     <li class="menu-item">
                         <div class="menu-item-header">
-                            <span class="menu-item-name">Karkalec</span>
-                            <span class="menu-item-price">600</span>
-                        </div>
-                        <p class="menu-item-description">Thin roll with crab filling.</p>
-                    </li>
-                </ul>
-            </div>
-            <!-- KRYESORE Category -->
-            <div class="menu-category">
-                <h3 class="category-title">KRYESORE</h3>
-                <ul class="menu-items-list">
-                    <li class="menu-item">
-                        <div class="menu-item-header">
-                            <span class="menu-item-name">Pule Teriaki</span>
-                            <span class="menu-item-price">850</span>
-                        </div>
-                        <p class="menu-item-description">Teriyaki chicken with rice and vegetables.</p>
-                        <p class="menu-item-ingredients">fileto pule, salsa shefit, susam, oriz, perime, unagi</p>
-                    </li>
-                    <li class="menu-item">
-                        <div class="menu-item-header">
-                            <span class="menu-item-name">Salmon Zgare</span>
-                            <span class="menu-item-price">1350</span>
-                        </div>
-                        <p class="menu-item-description">Grilled salmon with rice and vegetables.</p>
-                        <p class="menu-item-ingredients">salmon, oriz, perime, wakame, susam, unagi</p>
-                    </li>
-                </ul>
-            </div>
-            <!-- NOODLES Category -->
-            <div class="menu-category">
-                <h3 class="category-title">NOODLES</h3>
-                <ul class="menu-items-list">
-                    <li class="menu-item">
-                        <div class="menu-item-header">
-                            <span class="menu-item-name">Noodles Vegjetarian</span>
-                            <span class="menu-item-price">500</span>
-                        </div>
-                        <p class="menu-item-description">Vegetarian noodles with vegetables and special sauce.</p>
-                        <p class="menu-item-ingredients">perime, noodles, salsa</p>
-                    </li>
-                    <li class="menu-item">
-                        <div class="menu-item-header">
-                            <span class="menu-item-name">Noodles Pikant</span>
-                            <span class="menu-item-price">700</span>
-                        </div>
-                        <p class="menu-item-description">Spicy chicken noodles with vegetables.</p>
-                        <p class="menu-item-ingredients">fileto pule, perime, noodles, salsa shefit, salsa pikante</p>
-                    </li>
-                    <li class="menu-item">
-                        <div class="menu-item-header">
-                            <span class="menu-item-name">Noodles Karkalec</span>
+                            <span class="menu-item-name">California Roll</span>
                             <span class="menu-item-price">750</span>
                         </div>
-                        <p class="menu-item-description">Crab noodles with vegetables.</p>
-                        <p class="menu-item-ingredients">perime, karkalec, noodles, salsa</p>
+                        <p class="menu-item-description">Classic California roll with crab meat, avocado and cucumber.</p>
+                        <p class="menu-item-ingredients">Crab, Kastravec, Avokado, Caviar</p>
                     </li>
                     <li class="menu-item">
                         <div class="menu-item-header">
-                            <span class="menu-item-name">Noodles Fruta Deti</span>
+                            <span class="menu-item-name">Philadelphia Roll</span>
                             <span class="menu-item-price">800</span>
                         </div>
-                        <p class="menu-item-description">Seafood noodles with vegetables.</p>
-                        <p class="menu-item-ingredients">perime, salmon, karkalec, perime, salsa</p>
+                        <p class="menu-item-description">Salmon, cream cheese and avocado roll.</p>
+                        <p class="menu-item-ingredients">Salmon, Djath, Avokado, Susam</p>
                     </li>
                     <li class="menu-item">
                         <div class="menu-item-header">
-                            <span class="menu-item-name">Nasi Goreng</span>
-                            <span class="menu-item-price">700</span>
+                            <span class="menu-item-name">Dragon Roll</span>
+                            <span class="menu-item-price">900</span>
                         </div>
-                        <p class="menu-item-description">Indonesian fried rice with chicken and vegetables.</p>
-                        <p class="menu-item-ingredients">oriz, fileto pule, perime, salsa</p>
+                        <p class="menu-item-description">Eel and cucumber roll topped with avocado and eel sauce.</p>
+                        <p class="menu-item-ingredients">Karkalec, Avokado, Salsa unagi, Susam</p>
                     </li>
                     <li class="menu-item">
                         <div class="menu-item-header">
-                            <span class="menu-item-name">Noodles Pule</span>
-                            <span class="menu-item-price">650</span>
+                            <span class="menu-item-name">Rainbow Roll</span>
+                            <span class="menu-item-price">900</span>
                         </div>
-                        <p class="menu-item-description">Chicken noodles with vegetables.</p>
-                        <p class="menu-item-ingredients">fileto pule, perime, noodles, salsa</p>
+                        <p class="menu-item-description">California roll topped with tuna, salmon, yellowtail and avocado.</p>
+                        <p class="menu-item-ingredients">Ton, Salmon, Avokado, Crab, Kastravec, Susam</p>
+                    </li>
+                    <li class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Volcano Roll</span>
+                            <span class="menu-item-price">1200</span>
+                        </div>
+                        <p class="menu-item-description">Baked crab roll topped with spicy tuna and special sauce.</p>
+                        <p class="menu-item-ingredients">Ton spicy, Karkalec, Avokado, Salsa Shefit, Caviar, Susam</p>
+                    </li>
+                    <li class="menu-item">
+                        <div class="menu-item-header">
+                            <span class="menu-item-name">Crazy Roll</span>
+                            <span class="menu-item-price">1100</span>
+                        </div>
+                        <p class="menu-item-description">Shrimp tempura, spicy tuna, and avocado with special sauces.</p>
+                        <p class="menu-item-ingredients">Ton spicy, Karkalec, Avokado, Salsa Shefit, Caviar, Susam</p>
                     </li>
                 </ul>
             </div>
-            <!-- COMBO Category -->
-            <div class="menu-category">
-                <h3 class="category-title">COMBO</h3>
-                <ul class="menu-items-list">
-                    <li class="menu-item">
-                        <div class="menu-item-header">
-                            <span class="menu-item-name">Combo 20</span>
-                            <span class="menu-item-price">2000</span>
-                        </div>
-                        <p class="menu-item-description">Combo for 2 people with assorted sushi and sides.</p>
-                    </li>
-                    <li class="menu-item">
-                        <div class="menu-item-header">
-                            <span class="menu-item-name">Combo 30</span>
-                            <span class="menu-item-price">2990</span>
-                        </div>
-                        <p class="menu-item-description">Combo for 3 people with assorted sushi and sides.</p>
-                    </li>
-                    <li class="menu-item">
-                        <div class="menu-item-header">
-                            <span class="menu-item-name">Combo 40</span>
-                            <span class="menu-item-price">4250</span>
-                        </div>
-                        <p class="menu-item-description">Combo for 4 people with assorted sushi and sides.</p>
-                    </li>
-                    <li class="menu-item">
-                        <div class="menu-item-header">
-                            <span class="menu-item-name">Combo 60</span>
-                            <span class="menu-item-price">6250</span>
-                        </div>
-                        <p class="menu-item-description">Combo for 6 people with assorted sushi and sides.</p>
-                    </li>
-                    <li class="menu-item">
-                        <div class="menu-item-header">
-                            <span class="menu-item-name">Combo 90</span>
-                            <span class="menu-item-price">8490</span>
-                        </div>
-                        <p class="menu-item-description">Combo for 9 people with assorted sushi and sides.</p>
-                    </li>
-                    <li class="menu-item">
-                        <div class="menu-item-header">
-                            <span class="menu-item-name">Maki Mix 32</span>
-                            <span class="menu-item-price">3000</span>
-                        </div>
-                        <p class="menu-item-description">Assorted maki rolls, 32 pieces.</p>
-                    </li>
-                    <li class="menu-item">
-                        <div class="menu-item-header">
-                            <span class="menu-item-name">Maki Mix 24</span>
-                            <span class="menu-item-price">2000</span>
-                        </div>
-                        <p class="menu-item-description">Assorted maki rolls, 24 pieces.</p>
-                    </li>
-                    <li class="menu-item">
-                        <div class="menu-item-header">
-                            <span class="menu-item-name">Vegjetarian 24</span>
-                            <span class="menu-item-price">1500</span>
-                        </div>
-                        <p class="menu-item-description">Vegetarian maki rolls, 24 pieces.</p>
-                    </li>
-                    <li class="menu-item">
-                        <div class="menu-item-header">
-                            <span class="menu-item-name">Tempura Hot 24</span>
-                            <span class="menu-item-price">2990</span>
-                        </div>
-                        <p class="menu-item-description">Tempura rolls, 24 pieces.</p>
-                    </li>
-                    <li class="menu-item">
-                        <div class="menu-item-header">
-                            <span class="menu-item-name">Super Mix 32</span>
-                            <span class="menu-item-price">5600</span>
-                        </div>
-                        <p class="menu-item-description">Premium assorted sushi, 32 pieces.</p>
-                    </li>
-                    <li class="menu-item">
-                        <div class="menu-item-header">
-                            <span class="menu-item-name">Tempura Hot 32</span>
-                            <span class="menu-item-price">3990</span>
-                        </div>
-                        <p class="menu-item-description">Tempura rolls, 32 pieces.</p>
-                    </li>
-                    <li class="menu-item">
-                        <div class="menu-item-header">
-                            <span class="menu-item-name">Nigiri Combo 20</span>
-                            <span class="menu-item-price">2200</span>
-                        </div>
-                        <p class="menu-item-description">Assorted nigiri, 20 pieces.</p>
-                    </li>
-                    <li class="menu-item">
-                        <div class="menu-item-header">
-                            <span class="menu-item-name">Hosomaki 32</span>
-                            <span class="menu-item-price">1800</span>
-                        </div>
-                        <p class="menu-item-description">Assorted hosomaki, 32 pieces.</p>
-                    </li>
-                    <li class="menu-item">
-                        <div class="menu-item-header">
-                            <span class="menu-item-name">Mix Snack</span>
-                            <span class="menu-item-price">1500</span>
-                        </div>
-                        <p class="menu-item-description">Assorted snacks and appetizers.</p>
-                    </li>
-                </ul>
-            </div>
-            <!-- MAKI Category -->
             <div class="menu-category">
                 <h3 class="category-title">MAKI</h3>
                 <ul class="menu-items-list">
                     <li class="menu-item">
                         <div class="menu-item-header">
-                            <span class="menu-item-name">Philadelphia Roll</span>
-                            <span class="menu-item-price">980</span>
+                            <span class="menu-item-name">Ton</span>
+                            <span class="menu-item-price">350</span>
                         </div>
-                        <p class="menu-item-description">Salmon and cream cheese roll.</p>
-                        <p class="menu-item-ingredients">salmon, philadelphia, avocado, susam</p>
+                        <p class="menu-item-description">Tuna roll.</p>
                     </li>
                     <li class="menu-item">
                         <div class="menu-item-header">
-                            <span class="menu-item-name">Salmon i Tymosur</span>
-                            <span class="menu-item-price">890</span>
+                            <span class="menu-item-name">Salmon</span>
+                            <span class="menu-item-price">300</span>
                         </div>
-                        <p class="menu-item-description">Smoked salmon roll with avocado and cream cheese.</p>
-                        <p class="menu-item-ingredients">Salmon, Avokado, Philadelphia, Kastravec, susam, unagi</p>
+                        <p class="menu-item-description">Salmon roll.</p>
                     </li>
                     <li class="menu-item">
                         <div class="menu-item-header">
-                            <span class="menu-item-name">Maki Salmon Classic</span>
-                            <span class="menu-item-price">850</span>
+                            <span class="menu-item-name">Karkalec</span>
+                            <span class="menu-item-price">300</span>
                         </div>
-                        <p class="menu-item-description">Classic salmon roll with cream cheese.</p>
-                        <p class="menu-item-ingredients">Salmon, Avokado, Philadelphia, Kastravec, susam, unagi</p>
+                        <p class="menu-item-description">Crab roll.</p>
                     </li>
                     <li class="menu-item">
                         <div class="menu-item-header">
-                            <span class="menu-item-name">Maki Ton Spicy</span>
-                            <span class="menu-item-price">790</span>
+                            <span class="menu-item-name">Kastravec</span>
+                            <span class="menu-item-price">200</span>
                         </div>
-                        <p class="menu-item-description">Spicy tuna roll with cucumber.</p>
-                        <p class="menu-item-ingredients">ton, spicy, kastravec, susam</p>
+                        <p class="menu-item-description">Cucumber roll.</p>
                     </li>
                     <li class="menu-item">
                         <div class="menu-item-header">
-                            <span class="menu-item-name">Maki California</span>
-                            <span class="menu-item-price">890</span>
+                            <span class="menu-item-name">Avocado</span>
+                            <span class="menu-item-price">200</span>
                         </div>
-                        <p class="menu-item-description">Crab and avocado roll with cream cheese.</p>
-                        <p class="menu-item-ingredients">crab, avokado, philadelphia, kastravec, susam, caviar</p>
-                    </li>
-                    <li class="menu-item">
-                        <div class="menu-item-header">
-                            <span class="menu-item-name">Maki Vegjetarian</span>
-                            <span class="menu-item-price">600</span>
-                        </div>
-                        <p class="menu-item-description">Vegetarian roll with cucumber and avocado.</p>
-                        <p class="menu-item-ingredients">kastravec, avokado, philadelphia, susam, unagi</p>
-                    </li>
-                    <li class="menu-item">
-                        <div class="menu-item-header">
-                            <span class="menu-item-name">Maki Karkalec</span>
-                            <span class="menu-item-price">790</span>
-                        </div>
-                        <p class="menu-item-description">Crab roll with spicy mayo.</p>
-                        <p class="menu-item-ingredients">karkalec, spicy mayo, kastravec, susam, unagi</p>
-                    </li>
-                    <li class="menu-item">
-                        <div class="menu-item-header">
-                            <span class="menu-item-name">Futomaki</span>
-                            <span class="menu-item-price">980</span>
-                        </div>
-                        <p class="menu-item-description">Crab roll with spicy mayo and avocado.</p>
-                        <p class="menu-item-ingredients">karkalec, spicy mayo, kastravec, avokado</p>
-                    </li>
-                </ul>
-            </div>
-            <!-- MAKI SPECIAL HOT Category -->
-            <div class="menu-category">
-                <h3 class="category-title">MAKI SPECIAL HOT</h3>
-                <ul class="menu-items-list">
-                    <li class="menu-item">
-                        <div class="menu-item-header">
-                            <span class="menu-item-name">Maki Tempura Hot</span>
-                            <span class="menu-item-price">1250</span>
-                        </div>
-                        <p class="menu-item-description">Tempura salmon roll with avocado.</p>
-                        <p class="menu-item-ingredients">salmon, philadelphia, avokado, susam, unagi</p>
-                    </li>
-                    <li class="menu-item">
-                        <div class="menu-item-header">
-                            <span class="menu-item-name">Maki Tempura Hot Karkalec</span>
-                            <span class="menu-item-price">1250</span>
-                        </div>
-                        <p class="menu-item-description">Tempura crab roll with avocado.</p>
-                    </li>
-                    <li class="menu-item">
-                        <div class="menu-item-header">
-                            <span class="menu-item-name">Maki Ton Spicy Hot</span>
-                            <span class="menu-item-price">1250</span>
-                        </div>
-                        <p class="menu-item-description">Spicy tuna roll with avocado.</p>
-                        <p class="menu-item-ingredients">ton, spicy mayo, avokado, susam, unagi</p>
-                    </li>
-                    <li class="menu-item">
-                        <div class="menu-item-header">
-                            <span class="menu-item-name">Maki Hot Dog Roll</span>
-                            <span class="menu-item-price">1600</span>
-                        </div>
-                        <p class="menu-item-description">Salmon and crab roll with spicy mayo.</p>
-                        <p class="menu-item-ingredients">salmon, karkalec, philadelphia, avokado, spicy mayo, unagi, susam, caviar</p>
-                    </li>
-                    <li class="menu-item">
-                        <div class="menu-item-header">
-                            <span class="menu-item-name">Maki Crab Hot</span>
-                            <span class="menu-item-price">1180</span>
-                        </div>
-                        <p class="menu-item-description">Crab roll with avocado and sesame.</p>
-                        <p class="menu-item-ingredients">crab, philadelphia, avokado, susam, unagi</p>
-                    </li>
-                </ul>
-            </div>
-            <!-- MAKI SPECIALE Category -->
-            <div class="menu-category">
-                <h3 class="category-title">MAKI SPECIALE</h3>
-                <ul class="menu-items-list">
-                    <li class="menu-item">
-                        <div class="menu-item-header">
-                            <span class="menu-item-name">Rainbow</span>
-                            <span class="menu-item-price">1290</span>
-                        </div>
-                        <p class="menu-item-description">Colorful roll with assorted fish.</p>
-                        <p class="menu-item-ingredients">karkalec, spicy, kastravec, salmon, ton, avokado, susam, unagi</p>
-                    </li>
-                    <li class="menu-item">
-                        <div class="menu-item-header">
-                            <span class="menu-item-name">Dragon</span>
-                            <span class="menu-item-price">1250</span>
-                        </div>
-                        <p class="menu-item-description">Eel roll with avocado and cucumber.</p>
-                        <p class="menu-item-ingredients">karkalec, spicy, kastravec, salmon, wakame</p>
-                    </li>
-                    <li class="menu-item">
-                        <div class="menu-item-header">
-                            <span class="menu-item-name">The Bell Special</span>
-                            <span class="menu-item-price">1200</span>
-                        </div>
-                        <p class="menu-item-description">Our signature special roll.</p>
-                        <p class="menu-item-ingredients">karkalec, caviar, kastravec, spicy mayo</p>
-                    </li>
-                    <li class="menu-item">
-                        <div class="menu-item-header">
-                            <span class="menu-item-name">Samurai Roll</span>
-                            <span class="menu-item-price">1350</span>
-                        </div>
-                        <p class="menu-item-description">Tuna roll with spicy mayo and caviar.</p>
-                        <p class="menu-item-ingredients">ton, spicy mayo, kastravec, caviar</p>
-                    </li>
-                    <li class="menu-item">
-                        <div class="menu-item-header">
-                            <span class="menu-item-name">Ninja Roll</span>
-                            <span class="menu-item-price">1450</span>
-                        </div>
-                        <p class="menu-item-description">Crab and salmon roll with avocado.</p>
-                        <p class="menu-item-ingredients">crab, philadelphia, kastravec, avokado, salmon</p>
-                    </li>
-                    <li class="menu-item">
-                        <div class="menu-item-header">
-                            <span class="menu-item-name">Hawai Roll</span>
-                            <span class="menu-item-price">1250</span>
-                        </div>
-                        <p class="menu-item-description">Tropical roll with crab and salmon.</p>
-                        <p class="menu-item-ingredients">karkalec, salmon, ton, avokado, kastravec, spicy mayo</p>
-                    </li>
-                    <li class="menu-item">
-                        <div class="menu-item-header">
-                            <span class="menu-item-name">Double Futo Maki</span>
-                            <span class="menu-item-price">1600</span>
-                        </div>
-                        <p class="menu-item-description">Double layered roll with salmon and vegetables.</p>
-                        <p class="menu-item-ingredients">salmon, philadelphia, kastravec, avokado, caviar, susam, unagi</p>
-                    </li>
-                    <li class="menu-item">
-                        <div class="menu-item-header">
-                            <span class="menu-item-name">Ikura Caviar</span>
-                            <span class="menu-item-price">1550</span>
-                        </div>
-                        <p class="menu-item-description">Salmon roe roll with vegetables.</p>
-                        <p class="menu-item-ingredients">salmon, philadelphia, kastravec, avokado, caviar, susam, unagi</p>
-                    </li>
-                    <li class="menu-item">
-                        <div class="menu-item-header">
-                            <span class="menu-item-name">California Caviar Maki</span>
-                            <span class="menu-item-price">1700</span>
-                        </div>
-                        <p class="menu-item-description">California roll with caviar.</p>
-                        <p class="menu-item-ingredients">crab, philadelphia, kastravec, avokado, caviar, susam, unagi</p>
-                    </li>
-                    <li class="menu-item">
-                        <div class="menu-item-header">
-                            <span class="menu-item-name">Crazy Karkalec Maki</span>
-                            <span class="menu-item-price">1450</span>
-                        </div>
-                        <p class="menu-item-description">Spicy crab roll with vegetables.</p>
-                        <p class="menu-item-ingredients">karkalec, spicy mayo, kastravec, susam, avokado, unagi, caviar</p>
-                    </li>
-                    <li class="menu-item">
-                        <div class="menu-item-header">
-                            <span class="menu-item-name">Crazy Salmon Maki</span>
-                            <span class="menu-item-price">1350</span>
-                        </div>
-                        <p class="menu-item-description">Spicy salmon roll with vegetables.</p>
-                        <p class="menu-item-ingredients">salmon, philadelphia, kastravec, avokado, susam, unagi, caviar</p>
-                    </li>
-                    <li class="menu-item">
-                        <div class="menu-item-header">
-                            <span class="menu-item-name">Crazy Ton Maki</span>
-                            <span class="menu-item-price">1550</span>
-                        </div>
-                        <p class="menu-item-description">Spicy tuna roll with vegetables.</p>
-                        <p class="menu-item-ingredients">ton, Spicy mayo, kastravec, susam, avokado, unagi, caviar</p>
+                        <p class="menu-item-description">Avocado roll.</p>
                     </li>
                 </ul>
             </div>
         </div>
     </section>
-    <!-- 3D Viewer Modal -->
-    <div class="modal-3d" id="modal-3d">
-        <button class="modal-3d-close" id="modal-3d-close">×</button>
-        <h2 class="modal-3d-title" id="modal-3d-title">Product Name</h2>
+    <div id="modal3d" class="modal-3d">
         <div class="modal-3d-content">
-            <img src="" alt="3D Product View" class="modal-3d-image" id="modal-3d-image">
-        </div>
-        <div class="modal-3d-controls">
-            <button class="modal-3d-btn" id="rotate-left">Rotate Left</button>
-            <button class="modal-3d-btn" id="rotate-right">Rotate Right</button>
-            <button class="modal-3d-btn" id="reset-view">Reset View</button>
+            <h2 id="modal3d-title" class="modal-3d-title"></h2>
+            <div class="modal-3d-image-container">
+                <img id="modal3d-image" class="modal-3d-image" src="" alt="">
+            </div>
+            <div class="modal-3d-controls">
+                <button id="rotateLeftBtn" class="modal-3d-btn">Rotate Left</button>
+                <button id="rotateRightBtn" class="modal-3d-btn">Rotate Right</button>
+                <button id="resetViewBtn" class="modal-3d-btn">Reset View</button>
+            </div>
+            <button id="modal3d-close" class="modal-3d-close">&times;</button>
         </div>
     </div>
+    <div id="notification" class="notification">Item added to your order!</div>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Smooth scrolling for menu link
-            const menuLink = document.querySelector('.menu-link');
-            menuLink.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.getElementById('section-c').scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-            // Carousel functionality - Improved for mobile
-            const carousel = document.getElementById('carousel');
+        document.addEventListener('DOMContentLoaded', () => {
             const prevBtn = document.getElementById('prevBtn');
             const nextBtn = document.getElementById('nextBtn');
-            const indicators = document.querySelectorAll('.indicator');
-            const productCards = document.querySelectorAll('.product-card');
+            const carousel = document.getElementById('carousel');
+            const indicatorsContainer = document.getElementById('indicators');
+            const products = document.querySelectorAll('.product-card');
+            const totalProducts = products.length;
             let currentIndex = 0;
-            const totalProducts = productCards.length;
-            let touchStartX = 0;
-            let touchEndX = 0;
-            let isDragging = false;
-            // Initialize carousel
-            function updateCarousel() {
-                // Hide all cards
-                productCards.forEach(card => {
-                    card.style.display = 'none';
-                    card.classList.remove('active', 'prev', 'next');
+            const modal3d = document.getElementById('modal3d');
+            const modal3dClose = document.getElementById('modal3d-close');
+            const modal3dImage = document.getElementById('modal3d-image');
+            const modal3dTitle = document.getElementById('modal3d-title');
+            const view3dBtns = document.querySelectorAll('.view-3d-btn');
+            const rotateLeftBtn = document.getElementById('rotateLeftBtn');
+            const rotateRightBtn = document.getElementById('rotateRightBtn');
+            const resetViewBtn = document.getElementById('resetViewBtn');
+            const productButtons = document.querySelectorAll('.product-button');
+            const notification = document.getElementById('notification');
+
+            // Function to show notification
+            const showNotification = () => {
+                notification.classList.add('show');
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 3000);
+            };
+
+            productButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    showNotification();
                 });
-                // Calculate visible cards
+            });
+
+            const updateCarousel = () => {
+                products.forEach((product, index) => {
+                    product.classList.remove('active', 'prev', 'next');
+                    product.style.display = 'none'; // Hide all cards initially
+                });
+
+                // Determine the three visible products
                 const prevIndex = (currentIndex - 1 + totalProducts) % totalProducts;
                 const nextIndex = (currentIndex + 1) % totalProducts;
-                // Show and position cards
-                productCards[currentIndex].style.display = 'block';
-                productCards[currentIndex].classList.add('active');
-                productCards[prevIndex].style.display = 'block';
-                productCards[prevIndex].classList.add('prev');
-                productCards[nextIndex].style.display = 'block';
-                productCards[nextIndex].classList.add('next');
+
+                // Show and position the three visible products
+                products[currentIndex].classList.add('active');
+                products[prevIndex].classList.add('prev');
+                products[nextIndex].classList.add('next');
+
+                products[currentIndex].style.display = 'block';
+                products[prevIndex].style.display = 'block';
+                products[nextIndex].style.display = 'block';
+
                 // Update indicators
-                indicators.forEach((indicator, index) => {
+                document.querySelectorAll('.indicator').forEach((indicator, index) => {
                     indicator.classList.toggle('active', index === currentIndex);
                 });
-            }
-            // Next button
+            };
+
+            // Initial setup to display the first three products
+            products[0].classList.add('active');
+            products[1].classList.add('next');
+            products[totalProducts - 1].classList.add('prev');
+            products.forEach((product, index) => {
+                if (index !== 0 && index !== 1 && index !== totalProducts - 1) {
+                    product.style.display = 'none';
+                }
+            });
+
+            // Carousel navigation
             nextBtn.addEventListener('click', () => {
                 currentIndex = (currentIndex + 1) % totalProducts;
                 updateCarousel();
             });
-            // Previous button
+
             prevBtn.addEventListener('click', () => {
                 currentIndex = (currentIndex - 1 + totalProducts) % totalProducts;
                 updateCarousel();
             });
-            // Indicator clicks
-            indicators.forEach((indicator, index) => {
-                indicator.addEventListener('click', () => {
-                    currentIndex = index;
-                    updateCarousel();
-                });
-            });
-            // Touch functionality for mobile - Improved
-            carousel.addEventListener('touchstart', (e) => {
-                touchStartX = e.changedTouches[0].screenX;
-                isDragging = true;
-            }, {
-                passive: true
-            });
-            carousel.addEventListener('touchmove', (e) => {
-                if (!isDragging) return;
-                // Prevent default to allow smooth scrolling
-                e.preventDefault();
-            }, {
-                passive: false
-            });
-            carousel.addEventListener('touchend', (e) => {
-                if (!isDragging) return;
-                isDragging = false;
-                touchEndX = e.changedTouches[0].screenX;
-                handleSwipe();
-            }, {
-                passive: true
-            });
-            function handleSwipe() {
-                const swipeThreshold = 50; // Minimum distance for swipe
-                const diff = touchStartX - touchEndX;
-                if (Math.abs(diff) > swipeThreshold) {
-                    if (diff > 0) {
-                        // Swipe left - next
-                        currentIndex = (currentIndex + 1) % totalProducts;
-                    } else {
-                        // Swipe right - previous
-                        currentIndex = (currentIndex - 1 + totalProducts) % totalProducts;
+
+            // Indicator navigation
+            indicatorsContainer.addEventListener('click', (e) => {
+                if (e.target.classList.contains('indicator')) {
+                    const index = parseInt(e.target.dataset.index);
+                    if (!isNaN(index)) {
+                        currentIndex = index;
+                        updateCarousel();
                     }
-                    updateCarousel();
                 }
-            }
-            // Mouse swipe for desktop
-            carousel.addEventListener('mousedown', (e) => {
-                touchStartX = e.screenX;
-                isDragging = true;
-                carousel.style.cursor = 'grabbing';
             });
-            carousel.addEventListener('mousemove', (e) => {
-                if (!isDragging) return;
-                e.preventDefault();
-            });
-            carousel.addEventListener('mouseup', (e) => {
-                if (!isDragging) return;
-                isDragging = false;
-                carousel.style.cursor = 'pointer';
-                touchEndX = e.screenX;
-                handleSwipe();
-            });
-            carousel.addEventListener('mouseleave', () => {
-                isDragging = false;
-                carousel.style.cursor = 'pointer';
-            });
-            // Product button clicks
-            document.querySelectorAll('.product-button').forEach(button => {
-                button.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    const productName = this.closest('.product-card').getAttribute('data-product');
-                    // Create notification if it doesn't exist
-                    let notification = document.getElementById('notification');
-                    if (!notification) {
-                        notification = document.createElement('div');
-                        notification.id = 'notification';
-                        notification.className = 'notification';
-                        notification.innerHTML = '<span id="notification-text"></span>';
-                        document.body.appendChild(notification);
-                    }
-                    const notificationText = document.getElementById('notification-text');
-                    notificationText.textContent = `${productName} added to your order!`;
-                    notification.classList.add('show');
-                    setTimeout(() => {
-                        notification.classList.remove('show');
-                    }, 3000);
-                    console.log(`Added to order: ${productName}`);
-                });
-            });
+
             // 3D Modal functionality
-            const modal3d = document.getElementById('modal-3d');
-            const modal3dClose = document.getElementById('modal-3d-close');
-            const modal3dTitle = document.getElementById('modal-3d-title');
-            const modal3dImage = document.getElementById('modal-3d-image');
-            const rotateLeftBtn = document.getElementById('rotate-left');
-            const rotateRightBtn = document.getElementById('rotate-right');
-            const resetViewBtn = document.getElementById('reset-view');
-            let currentRotation = 0;
-            // View in 3D button clicks
-            document.querySelectorAll('.view-3d-btn').forEach(button => {
-                button.addEventListener('click', function(e) {
+            view3dBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
                     e.stopPropagation();
-                    const productName = this.getAttribute('data-product');
-                    const imageUrl = this.getAttribute('data-image');
-                    modal3dTitle.textContent = productName;
-                    modal3dImage.src = imageUrl;
+                    const productTitle = e.target.dataset.product;
+                    const imageUrl = e.target.dataset.image;
                     modal3d.classList.add('active');
-                    // Reset rotation
-                    currentRotation = 0;
-                    modal3dImage.style.transform = `rotateY(${currentRotation}deg)`;
+                    modal3dTitle.textContent = productTitle;
+                    modal3dImage.src = imageUrl;
                 });
             });
-            // Close modal
+
             modal3dClose.addEventListener('click', () => {
                 modal3d.classList.remove('active');
             });
-            // Rotate controls
+
+            let currentRotation = 0;
             rotateLeftBtn.addEventListener('click', () => {
                 currentRotation -= 45;
                 modal3dImage.style.transform = `rotateY(${currentRotation}deg)`;
