@@ -18,7 +18,7 @@
             overflow-x: hidden;
             line-height: 1.6;
         }
-        
+
         /* Section A - Landing Page */
         .section-a {
             height: 100vh;
@@ -29,7 +29,7 @@
             background: linear-gradient(135deg, #1F2C43 0%, #2A3A5C 100%);
             position: relative;
             overflow: hidden;
-            text-align: center;
+            text-align: center; /* Ensures text is centered on all devices */
         }
         .section-a::before {
             content: '';
@@ -62,8 +62,8 @@
             }
         }
         .logo {
-            width: clamp(150px, 30vw, 200px); /* Responsive logo size */
-            height: clamp(150px, 30vw, 200px);
+            width: 200px;
+            height: 200px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -77,7 +77,7 @@
         .sushi-quote {
             position: relative;
             z-index: 1;
-            font-size: clamp(1.4rem, 4vw, 1.8rem);
+            font-size: clamp(1.4rem, 4vw, 1.8rem); /* Fluid font size */
             font-style: italic;
             max-width: 800px;
             margin: 0 20px 50px;
@@ -90,7 +90,7 @@
             background: linear-gradient(45deg, #FAF9F6, #E8E7E3);
             color: #1F2C43;
             text-decoration: none;
-            font-size: clamp(1.1rem, 3vw, 1.3rem);
+            font-size: clamp(1.1rem, 3vw, 1.3rem); /* Fluid font size */
             font-weight: 600;
             border-radius: 50px;
             transition: all 0.3s ease;
@@ -102,7 +102,123 @@
             transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(250, 249, 246, 0.5);
         }
-        
+
+        /* Section B - 3D Carousel */
+        .section-b {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #2A3A5C 0%, #1F2C43 100%);
+        }
+        .section-b .menu-container {
+            width: 100%;
+            max-width: 1200px;
+            text-align: center;
+            margin: 0 auto;
+        }
+        .section-b .menu-header h1 {
+            font-size: clamp(2rem, 5vw, 2.5rem); /* Fluid font size */
+            margin-bottom: 15px;
+            color: #FAF9F6;
+        }
+        .section-b .menu-header p {
+            font-size: clamp(1rem, 2vw, 1.1rem); /* Fluid font size */
+            color: #D1D0CC;
+            margin-bottom: 40px;
+        }
+
+        /* Section C - Text-only Menu */
+        .section-c {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #1F2C43 0%, #0F1824 100%);
+            position: relative;
+        }
+        .section-c-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .section-c-header h2 {
+            font-size: clamp(2.2rem, 6vw, 3rem); /* Fluid font size */
+            color: #FAF9F6;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        .section-c-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: #FAF9F6;
+        }
+        .section-c-header p {
+            font-size: clamp(1rem, 2.5vw, 1.2rem); /* Fluid font size */
+            color: #D1D0CC;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Text-only Menu Styles */
+        .text-menu {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .menu-category {
+            margin-bottom: 50px;
+        }
+        .category-title {
+            font-size: clamp(1.8rem, 4vw, 2.2rem); /* Fluid font size */
+            color: #FAF9F6;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(250, 249, 246, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+        .menu-items-list {
+            list-style-type: none;
+        }
+        .menu-item {
+            margin-bottom: 18px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid rgba(250, 249, 246, 0.1);
+            transition: all 0.3s ease;
+        }
+        .menu-item:hover {
+            padding-left: 10px;
+            border-color: rgba(250, 249, 246, 0.3);
+        }
+        .menu-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 5px;
+            flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+        }
+        .menu-item-name {
+            font-size: clamp(1.2rem, 3vw, 1.4rem); /* Fluid font size */
+            font-weight: 600;
+            color: #FAF9F6;
+        }
+        .menu-item-price {
+            font-size: clamp(1.1rem, 2.5vw, 1.2rem); /* Fluid font size */
+            color: #FAF9F6;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .menu-item-description {
+            color: #D1D0CC;
+            font-size: clamp(0.9rem, 2vw, 1rem); /* Fluid font size */
+            margin-bottom: 8px;
+        }
+        .menu-item-ingredients {
+            color: #A8A7A3;
+            font-size: clamp(0.8rem, 1.5vw, 0.9rem); /* Fluid font size */
+            font-style: italic;
+        }
+
         /* Scroll indicator */
         .scroll-indicator {
             position: absolute;
@@ -141,37 +257,33 @@
                 opacity: 0;
             }
         }
-        
-        /* Section B - 3D Carousel */
-        .section-b {
-            padding: 80px 20px;
-            background: linear-gradient(135deg, #2A3A5C 0%, #1F2C43 100%);
-        }
-        .section-b .menu-container {
-            width: 100%;
-            max-width: 1200px;
-            text-align: center;
-            margin: 0 auto;
-        }
-        .section-b .menu-header h1 {
-            font-size: clamp(2rem, 5vw, 2.5rem);
-            margin-bottom: 15px;
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #3A4D6B;
             color: #FAF9F6;
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transform: translateX(400px);
+            transition: transform 0.4s ease;
+            z-index: 1000;
         }
-        .section-b .menu-header p {
-            font-size: clamp(1rem, 2vw, 1.1rem);
-            color: #D1D0CC;
-            margin-bottom: 40px;
+        .notification.show {
+            transform: translateX(0);
         }
-        
-        /* Carousel styles - Now fully responsive */
+
+        /* Carousel styles - Improved for mobile */
         .carousel-container {
             position: relative;
             width: 100%;
             max-width: 900px;
             margin: 0 auto;
-            height: clamp(300px, 70vw, 400px); /* Fully responsive height */
-            perspective: clamp(600px, 150vw, 800px); /* Fully responsive perspective */
+            height: 400px; /* Base height for desktop */
+            perspective: 800px; /* Base perspective for desktop */
             margin-bottom: 30px;
             overflow: visible;
         }
@@ -184,11 +296,11 @@
         }
         .product-card {
             position: absolute;
-            width: clamp(220px, 45vw, 280px); /* Responsive width */
-            height: clamp(300px, 60vw, 380px); /* Responsive height */
+            width: 280px; /* Base width */
+            height: 380px; /* Base height */
             left: 50%;
             top: 50%;
-            transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%); /* Center the card */
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
@@ -198,9 +310,18 @@
             cursor: pointer;
             backface-visibility: hidden;
         }
-        /* Dynamic transform values for the cards */
-        .product-card.prev {
-            transform: translate(-50%, -50%) translateX(clamp(-200px, -40vw, -280px)) translateZ(clamp(-80px, -20vw, -150px)) rotateY(20deg);
+        .product-card:nth-child(1) {
+            transform: translate(-50%, -50%) translateX(-280px) translateZ(-150px) rotateY(20deg);
+            opacity: 0.7;
+            z-index: 1;
+        }
+        .product-card:nth-child(2) {
+            transform: translate(-50%, -50%) translateX(0) translateZ(0) rotateY(0deg);
+            opacity: 1;
+            z-index: 3;
+        }
+        .product-card:nth-child(3) {
+            transform: translate(-50%, -50%) translateX(280px) translateZ(-150px) rotateY(-20deg);
             opacity: 0.7;
             z-index: 1;
         }
@@ -209,24 +330,23 @@
             opacity: 1;
             z-index: 3;
         }
-        .product-card.next {
-            transform: translate(-50%, -50%) translateX(clamp(200px, 40vw, 280px)) translateZ(clamp(-80px, -20vw, -150px)) rotateY(-20deg);
+        .product-card.prev {
+            transform: translate(-50%, -50%) translateX(-280px) translateZ(-150px) rotateY(20deg);
             opacity: 0.7;
             z-index: 1;
         }
-        /* Hiding inactive cards to avoid layout issues */
-        .product-card:not(.active):not(.prev):not(.next) {
-            display: none;
+        .product-card.next {
+            transform: translate(-50%, -50%) translateX(280px) translateZ(-150px) rotateY(-20deg);
+            opacity: 0.7;
+            z-index: 1;
         }
-        
         .product-image {
-            height: clamp(150px, 35vw, 200px);
+            height: 200px;
             width: 100%;
             background-size: cover;
             background-position: center;
             position: relative;
         }
-        
         /* 3D View Button */
         .view-3d-btn {
             position: absolute;
@@ -255,14 +375,14 @@
             color: #1F2C43;
         }
         .product-title {
-            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+            font-size: clamp(1.1rem, 2.5vw, 1.3rem); /* Fluid font size */
             font-weight: 700;
             color: #1F2C43;
             margin-bottom: 8px;
         }
         .product-description {
             color: #3A4D6B;
-            font-size: clamp(0.8rem, 1.5vw, 0.85rem);
+            font-size: clamp(0.8rem, 1.5vw, 0.85rem); /* Fluid font size */
             margin-bottom: 15px;
             line-height: 1.4;
             height: 60px;
@@ -272,7 +392,7 @@
             -webkit-box-orient: vertical;
         }
         .product-price {
-            font-size: clamp(1.3rem, 3vw, 1.5rem);
+            font-size: clamp(1.3rem, 3vw, 1.5rem); /* Fluid font size */
             font-weight: 700;
             color: #1F2C43;
             margin-bottom: 20px;
@@ -285,7 +405,7 @@
             padding: 12px;
             border-radius: 50px;
             font-weight: 600;
-            font-size: clamp(0.85rem, 2vw, 0.9rem);
+            font-size: clamp(0.85rem, 2vw, 0.9rem); /* Fluid font size */
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 5px 15px rgba(31, 44, 67, 0.3);
@@ -336,101 +456,6 @@
             background: #FAF9F6;
             transform: scale(1.3);
         }
-        
-        /* Section C - Text-only Menu */
-        .section-c {
-            padding: 80px 20px;
-            background: linear-gradient(135deg, #1F2C43 0%, #0F1824 100%);
-            position: relative;
-        }
-        .section-c-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-        .section-c-header h2 {
-            font-size: clamp(2.2rem, 6vw, 3rem);
-            color: #FAF9F6;
-            margin-bottom: 20px;
-            position: relative;
-            display: inline-block;
-        }
-        .section-c-header h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background: #FAF9F6;
-        }
-        .section-c-header p {
-            font-size: clamp(1rem, 2.5vw, 1.2rem);
-            color: #D1D0CC;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        /* Text-only Menu Styles */
-        .text-menu {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        .menu-category {
-            margin-bottom: 50px;
-        }
-        .category-title {
-            font-size: clamp(1.8rem, 4vw, 2.2rem);
-            color: #FAF9F6;
-            margin-bottom: 25px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid rgba(250, 249, 246, 0.3);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 700;
-        }
-        .menu-items-list {
-            list-style-type: none;
-        }
-        .menu-item {
-            margin-bottom: 18px;
-            padding-bottom: 18px;
-            border-bottom: 1px solid rgba(250, 249, 246, 0.1);
-            transition: all 0.3s ease;
-        }
-        .menu-item:hover {
-            padding-left: 10px;
-            border-color: rgba(250, 249, 246, 0.3);
-        }
-        .menu-item-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 5px;
-            flex-wrap: wrap;
-        }
-        .menu-item-name {
-            font-size: clamp(1.2rem, 3vw, 1.4rem);
-            font-weight: 600;
-            color: #FAF9F6;
-        }
-        .menu-item-price {
-            font-size: clamp(1.1rem, 2.5vw, 1.2rem);
-            color: #FAF9F6;
-            font-weight: 700;
-            white-space: nowrap;
-        }
-        .menu-item-description {
-            color: #D1D0CC;
-            font-size: clamp(0.9rem, 2vw, 1rem);
-            margin-bottom: 8px;
-        }
-        .menu-item-ingredients {
-            color: #A8A7A3;
-            font-size: clamp(0.8rem, 1.5vw, 0.9rem);
-            font-style: italic;
-        }
-        
         /* 3D Viewer Modal */
         .modal-3d {
             display: none;
@@ -468,7 +493,7 @@
         }
         .modal-3d-title {
             color: #FAF9F6;
-            font-size: clamp(1.4rem, 3vw, 1.8rem);
+            font-size: clamp(1.4rem, 3vw, 1.8rem); /* Fluid font size */
             margin-bottom: 20px;
             text-align: center;
         }
@@ -485,7 +510,7 @@
             border-radius: 30px;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-size: clamp(0.9rem, 2vw, 1rem);
+            font-size: clamp(0.9rem, 2vw, 1rem); /* Fluid font size */
         }
         .modal-3d-btn:hover {
             background: rgba(250, 249, 246, 0.3);
@@ -510,23 +535,89 @@
         .modal-3d-close:hover {
             background: rgba(250, 249, 246, 0.3);
         }
-        
-        /* Notification */
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: #3A4D6B;
-            color: #FAF9F6;
-            padding: 15px 25px;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            transform: translateX(400px);
-            transition: transform 0.4s ease;
-            z-index: 1000;
+
+        /* Responsive adjustments for various screen sizes */
+        @media (max-width: 768px) {
+            .logo {
+                width: 180px;
+                height: 180px;
+            }
+            .sushi-quote {
+                padding: 0 15px;
+            }
+            .product-card {
+                width: 250px;
+                height: 340px;
+            }
+            .product-image {
+                height: 170px;
+            }
+            /* Adjust carousel transforms for smaller viewports */
+            .product-card:nth-child(1) {
+                transform: translate(-50%, -50%) translateX(-250px) translateZ(-120px) rotateY(18deg);
+            }
+            .product-card:nth-child(3) {
+                transform: translate(-50%, -50%) translateX(250px) translateZ(-120px) rotateY(-18deg);
+            }
+            .product-card.prev {
+                transform: translate(-50%, -50%) translateX(-250px) translateZ(-120px) rotateY(18deg);
+            }
+            .product-card.next {
+                transform: translate(-50%, -50%) translateX(250px) translateZ(-120px) rotateY(-18deg);
+            }
         }
-        .notification.show {
-            transform: translateX(0);
+
+        @media (max-width: 480px) {
+            .logo {
+                width: 150px;
+                height: 150px;
+            }
+            .section-c-header {
+                margin-bottom: 40px;
+            }
+            .carousel-container {
+                height: 320px;
+                perspective: 600px;
+            }
+            .product-card {
+                width: 220px;
+                height: 300px;
+            }
+            .product-image {
+                height: 150px;
+            }
+            /* Adjust carousel transforms for mobile viewports */
+            .product-card:nth-child(1) {
+                transform: translate(-50%, -50%) translateX(-180px) translateZ(-80px) rotateY(15deg);
+            }
+            .product-card:nth-child(3) {
+                transform: translate(-50%, -50%) translateX(180px) translateZ(-80px) rotateY(-15deg);
+            }
+            .product-card.prev {
+                transform: translate(-50%, -50%) translateX(-180px) translateZ(-80px) rotateY(15deg);
+            }
+            .product-card.next {
+                transform: translate(-50%, -50%) translateX(180px) translateZ(-80px) rotateY(-15deg);
+            }
+            .product-info {
+                padding: 15px;
+            }
+            .product-description {
+                height: 45px;
+                -webkit-line-clamp: 2; /* Adjusting for smaller space */
+            }
+            .carousel-controls {
+                gap: 10px;
+            }
+            .carousel-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+            .indicator {
+                width: 8px;
+                height: 8px;
+            }
         }
     </style>
 </head>
@@ -541,7 +632,6 @@
         <a href="#section-c" class="menu-link">Explore Our Menu</a>
         <div class="scroll-indicator"></div>
     </section>
-    
     <section id="section-b" class="section-b">
         <div class="menu-container">
             <div class="menu-header">
@@ -550,7 +640,7 @@
             </div>
             <div class="carousel-container">
                 <div class="carousel" id="carousel">
-                    <div class="product-card" data-product="Premium Sushi Platter">
+                    <div class="product-card active" data-product="Premium Sushi Platter">
                         <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');">
                             <button class="view-3d-btn" data-product="Premium Sushi Platter" data-image="https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">See it in 3D</button>
                         </div>
@@ -561,7 +651,7 @@
                             <button class="product-button">Add to Order</button>
                         </div>
                     </div>
-                    <div class="product-card" data-product="Dragon Roll">
+                    <div class="product-card next" data-product="Dragon Roll">
                         <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');">
                             <button class="view-3d-btn" data-product="Dragon Roll" data-image="https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">See it in 3D</button>
                         </div>
@@ -572,7 +662,7 @@
                             <button class="product-button">Add to Order</button>
                         </div>
                     </div>
-                    <div class="product-card" data-product="Tuna Tataki">
+                    <div class="product-card prev" data-product="Tuna Tataki">
                         <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');">
                             <button class="view-3d-btn" data-product="Tuna Tataki" data-image="https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">See it in 3D</button>
                         </div>
@@ -583,7 +673,7 @@
                             <button class="product-button">Add to Order</button>
                         </div>
                     </div>
-                    <div class="product-card" data-product="Rainbow Roll">
+                    <div class="product-card" data-product="Rainbow Roll" style="display: none;">
                         <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');">
                             <button class="view-3d-btn" data-product="Rainbow Roll" data-image="https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">See it in 3D</button>
                         </div>
@@ -594,7 +684,7 @@
                             <button class="product-button">Add to Order</button>
                         </div>
                     </div>
-                    <div class="product-card" data-product="Salmon Nigiri">
+                    <div class="product-card" data-product="Salmon Nigiri" style="display: none;">
                         <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');">
                             <button class="view-3d-btn" data-product="Salmon Nigiri" data-image="https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">See it in 3D</button>
                         </div>
@@ -605,7 +695,7 @@
                             <button class="product-button">Add to Order</button>
                         </div>
                     </div>
-                    <div class="product-card" data-product="Tempura Uramaki">
+                    <div class="product-card" data-product="Tempura Uramaki" style="display: none;">
                         <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');">
                             <button class="view-3d-btn" data-product="Tempura Uramaki" data-image="https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">See it in 3D</button>
                         </div>
@@ -632,7 +722,6 @@
             </div>
         </div>
     </section>
-    
     <section id="section-c" class="section-c">
         <div class="section-c-header">
             <h2>Our Exquisite Menu</h2>
@@ -991,7 +1080,6 @@
             </div>
         </div>
     </section>
-    
     <div id="modal3d" class="modal-3d">
         <div class="modal-3d-content">
             <h2 id="modal3d-title" class="modal-3d-title"></h2>
@@ -1006,7 +1094,6 @@
             <button id="modal3d-close" class="modal-3d-close">&times;</button>
         </div>
     </div>
-    
     <div id="notification" class="notification">Item added to your order!</div>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -1027,7 +1114,7 @@
             const resetViewBtn = document.getElementById('resetViewBtn');
             const productButtons = document.querySelectorAll('.product-button');
             const notification = document.getElementById('notification');
-            
+
             // Function to show notification
             const showNotification = () => {
                 notification.classList.add('show');
@@ -1035,47 +1122,59 @@
                     notification.classList.remove('show');
                 }, 3000);
             };
-            
+
             productButtons.forEach(button => {
                 button.addEventListener('click', () => {
                     showNotification();
                 });
             });
-            
+
             const updateCarousel = () => {
                 products.forEach((product, index) => {
                     product.classList.remove('active', 'prev', 'next');
+                    product.style.display = 'none'; // Hide all cards initially
                 });
-                
+
                 // Determine the three visible products
                 const prevIndex = (currentIndex - 1 + totalProducts) % totalProducts;
                 const nextIndex = (currentIndex + 1) % totalProducts;
-                
+
                 // Show and position the three visible products
                 products[currentIndex].classList.add('active');
                 products[prevIndex].classList.add('prev');
                 products[nextIndex].classList.add('next');
-                
+
+                products[currentIndex].style.display = 'block';
+                products[prevIndex].style.display = 'block';
+                products[nextIndex].style.display = 'block';
+
                 // Update indicators
                 document.querySelectorAll('.indicator').forEach((indicator, index) => {
                     indicator.classList.toggle('active', index === currentIndex);
                 });
             };
-            
+
             // Initial setup to display the first three products
-            updateCarousel();
-            
+            products[0].classList.add('active');
+            products[1].classList.add('next');
+            products[totalProducts - 1].classList.add('prev');
+            products.forEach((product, index) => {
+                if (index !== 0 && index !== 1 && index !== totalProducts - 1) {
+                    product.style.display = 'none';
+                }
+            });
+
             // Carousel navigation
             nextBtn.addEventListener('click', () => {
                 currentIndex = (currentIndex + 1) % totalProducts;
                 updateCarousel();
             });
-            
+
             prevBtn.addEventListener('click', () => {
                 currentIndex = (currentIndex - 1 + totalProducts) % totalProducts;
                 updateCarousel();
             });
-            
+
             // Indicator navigation
             indicatorsContainer.addEventListener('click', (e) => {
                 if (e.target.classList.contains('indicator')) {
@@ -1086,7 +1185,7 @@
                     }
                 }
             });
-            
+
             // 3D Modal functionality
             view3dBtns.forEach(btn => {
                 btn.addEventListener('click', (e) => {
@@ -1098,11 +1197,11 @@
                     modal3dImage.src = imageUrl;
                 });
             });
-            
+
             modal3dClose.addEventListener('click', () => {
                 modal3d.classList.remove('active');
             });
-            
+
             let currentRotation = 0;
             rotateLeftBtn.addEventListener('click', () => {
                 currentRotation -= 45;
@@ -1116,14 +1215,14 @@
                 currentRotation = 0;
                 modal3dImage.style.transform = `rotateY(${currentRotation}deg)`;
             });
-            
             // Close modal when clicking outside
             modal3d.addEventListener('click', (e) => {
                 if (e.target === modal3d) {
                     modal3d.classList.remove('active');
                 }
             });
-            
+            // Initialize carousel
+            updateCarousel();
             // Add keyboard navigation
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'ArrowLeft') {
